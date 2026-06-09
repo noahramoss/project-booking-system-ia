@@ -1,0 +1,12 @@
+/*
+  Warnings:
+
+  - You are about to alter the column `totalPrice` on the `bookings` table. The data in that column could be lost. The data in that column will be cast from `Decimal(65,30)` to `Decimal(20,2)`.
+  - You are about to alter the column `price` on the `rooms` table. The data in that column could be lost. The data in that column will be cast from `Decimal(65,30)` to `Decimal(10,2)`.
+
+*/
+-- AlterTable
+ALTER TABLE "bookings" ALTER COLUMN "totalPrice" SET DATA TYPE DECIMAL(20,2);
+
+-- AlterTable
+ALTER TABLE "rooms" ALTER COLUMN "price" SET DATA TYPE DECIMAL(10,2);

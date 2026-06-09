@@ -1,0 +1,3426 @@
+{
+  "info": {
+    "_postman_id": "1696e7ac-cd33-43c4-857e-8e703595fb6f",
+    "name": "Booking System API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "45046936",
+    "_collection_link": "https://go.postman.co/collection/45046936-1696e7ac-cd33-43c4-857e-8e703595fb6f?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "1. Register Manager A",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \n    \"name\": \"Manager A\", \n    \"email\": \"managerA@manager.com\", \n    \"password\": \"Password123!\", \n    \"role\": \"MANAGER\" \n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "1. Register Manager A",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{ \n    \"name\": \"Manager A\", \n    \"email\": \"managerA@manager.com\", \n    \"password\": \"Password123!\", \n    \"role\": \"MANAGER\" \n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/auth/register",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "163"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"a3-59J5XliP4a3zsJMReYi2ap8OZAw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 11:36:25 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Usuario registrado con éxito\",\n    \"user\": {\n        \"id\": \"b142a3fd-2144-4f91-a2ce-47de76af8f81\",\n        \"name\": \"Manager A\",\n        \"email\": \"managerA@manager.com\",\n        \"role\": \"MANAGER\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "2. Register Manager B",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \n    \"name\": \"Manager B\", \n    \"email\": \"managerB@manager.com\", \n    \"password\": \"Password123!\", \n    \"role\": \"MANAGER\" \n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "2. Register Manager B",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{ \n    \"name\": \"Manager B\", \n    \"email\": \"managerB@manager.com\", \n    \"password\": \"Password123!\", \n    \"role\": \"MANAGER\" \n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/auth/register",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "163"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"a3-/y+pqN/i0IsLAlzMNLjCvUMuRHg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 11:39:06 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Usuario registrado con éxito\",\n    \"user\": {\n        \"id\": \"468d6c02-7ece-4115-821d-134b0bddc609\",\n        \"name\": \"Manager B\",\n        \"email\": \"managerB@manager.com\",\n        \"role\": \"MANAGER\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "3. Register Admin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \n    \"name\": \"Noah\", \n    \"email\": \"noah@admin.com\", \n    \"password\": \"Password123!\", \n    \"role\": \"ADMIN\" \n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "3. Register Admin",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{ \n    \"name\": \"Noah\", \n    \"email\": \"noah@admin.com\", \n    \"password\": \"Password123!\", \n    \"role\": \"ADMIN\" \n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/auth/register",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "150"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"96-sLwu4SIXwmHMeLPFi0RRI2f+Jd4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 11:40:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Usuario registrado con éxito\",\n    \"user\": {\n        \"id\": \"eba34936-7994-4e43-97bf-689168c7e041\",\n        \"name\": \"Noah\",\n        \"email\": \"noah@admin.com\",\n        \"role\": \"ADMIN\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "4. Login Manager A",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// 1. Convertimos la respuesta del servidor a formato JSON legible",
+                  "const responseData = pm.response.json();",
+                  "",
+                  "// 2. Verificamos si la respuesta trae un token ",
+                  "if (responseData.token) {",
+                  "    // 3. Guardamos el token en nuestra variable de entorno 'jwt_token'",
+                  "    pm.environment.set(\"jwt_token\", responseData.token);",
+                  "    console.log(\"¡Token capturado y guardado en el entorno local!\");",
+                  "} else {",
+                  "    console.log(\"No se encontró ningún token en la respuesta.\");",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{  \n    \"email\": \"managerA@manager.com\", \n    \"password\": \"Password123!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "4. Login Manager A",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{  \n    \"email\": \"managerA@manager.com\", \n    \"password\": \"Password123!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/auth/login",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "380"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"17c-ehxJBWvtXuAKS3HM5wglxRdXbp8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 11:41:12 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Usuario logeado con éxito\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIxNDJhM2ZkLTIxNDQtNGY5MS1hMmNlLTQ3ZGU3NmFmOGY4MSIsInJvbGUiOiJNQU5BR0VSIiwiaWF0IjoxNzc4ODQ1MjcyLCJleHAiOjE3Nzk0NTAwNzJ9.Vd7_wQq6bbwLsMMSXUYxsGazgUSDP_IZyNesyOKhz5M\",\n    \"user\": {\n        \"id\": \"b142a3fd-2144-4f91-a2ce-47de76af8f81\",\n        \"name\": \"Manager A\",\n        \"email\": \"managerA@manager.com\",\n        \"role\": \"MANAGER\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login Admin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"noah@admin.com\",\n    \"password\": \"Password123!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login Admin",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"noah@admin.com\",\n    \"password\": \"Password123!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/auth/login",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "365"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"16d-8l4HIPsnW3+0Xiv7wQTpMdDci5w\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 16:53:41 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Usuario logeado con éxito\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImViYTM0OTM2LTc5OTQtNGU0My05N2JmLTY4OTE2OGM3ZTA0MSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3ODg2NDAyMSwiZXhwIjoxNzc5NDY4ODIxfQ.idgUNWAZBrwxfmKKuE5D-4E42S3Foh8FjPIQTd8804c\",\n    \"user\": {\n        \"id\": \"eba34936-7994-4e43-97bf-689168c7e041\",\n        \"name\": \"Noah\",\n        \"email\": \"noah@admin.com\",\n        \"role\": \"ADMIN\"\n    }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Hotel",
+      "item": [
+        {
+          "name": "5. Create Hotel (Failed)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"A \"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/hotel",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "hotel"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "5. Create Hotel (Failed)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"A \"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/hotel",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "hotel"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "287"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"11f-lM41EMv/r3GN7EosqjHC6Wlr24E\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 14 May 2026 14:31:55 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Error de validación de datos\",\n    \"detalles\": [\n        \"name: El nombre del hotel debe tener al menos 2 caracteres\",\n        \"city: La ciudad es obligatoria y debe ser texto\",\n        \"country: El país es obligatorio y debe ser texto\",\n        \"stars: El número de estrellas es obligatorio y debe ser un número\"\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "6. Create Hotel",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Hotel Prueba\",\n    \"city\": \"Las Palmas de Gran Canaria\",\n    \"country\": \"Spain\",\n    \"description\": \"Nuevo Hotel en la isla de Gran Canaria\",\n    \"stars\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/hotel",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "hotel"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "6. Create Hotel",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Hotel Prueba 6\",\n    \"city\": \"Las Palmas de Gran Canaria\",\n    \"country\": \"Spain\",\n    \"description\": \"Nuevo Hotel en la isla de Gran Canaria\",\n    \"stars\": 4\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/hotel",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "hotel"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "298"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"12a-ubOKucgoQtsAHfGKVYfIl5BW9NY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 11:42:07 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Hotel creado con éxito\",\n    \"hotel\": {\n        \"id\": \"b00111ec-ef91-42df-86f3-0ad7bdae3105\",\n        \"name\": \"Hotel Prueba 6\",\n        \"city\": \"Las Palmas de Gran Canaria\",\n        \"country\": \"Spain\",\n        \"stars\": 4,\n        \"description\": \"Nuevo Hotel en la isla de Gran Canaria\",\n        \"managerName\": \"Manager A\",\n        \"managerEmail\": \"managerA@manager.com\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "7. Get All Hotels",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{base_url}}/hotel",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "hotel"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "7. Get All Hotels",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{base_url}}/hotel",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "hotel"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1098"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"44a-a/T1krJKDYkofWrBl875cdl9dyI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 11:52:12 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"results\": 4,\n    \"pagination\": {\n        \"totalRecords\": 4,\n        \"currentPage\": 1,\n        \"totalPages\": 1\n    },\n    \"hotels\": [\n        {\n            \"id\": \"2c1d75e0-97f1-465c-8daf-3f5bd352faa8\",\n            \"name\": \"Hotel Prueba 2\",\n            \"city\": \"Las Palmas de Gran Canaria\",\n            \"country\": \"Spain\",\n            \"stars\": 4,\n            \"description\": \"Nuevo Hotel en la isla de Gran Canaria\",\n            \"managerName\": \"Manager A\",\n            \"managerEmail\": \"managerA@manager.com\"\n        },\n        {\n            \"id\": \"765ad235-b678-4da7-bb16-756bdf26fb81\",\n            \"name\": \"Hotel Prueba\",\n            \"city\": \"Las Palmas de Gran Canaria\",\n            \"country\": \"Spain\",\n            \"stars\": 4,\n            \"description\": \"Nuevo Hotel en la isla de Gran Canaria\",\n            \"managerName\": \"Manager A\",\n            \"managerEmail\": \"managerA@manager.com\"\n        },\n        {\n            \"id\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"name\": \"Hotel Prueba 24\",\n            \"city\": \"Las Palmas de Gran Canaria\",\n            \"country\": \"Spain\",\n            \"stars\": 4,\n            \"description\": \"Nuevo Hotel en la isla de Gran Canaria\",\n            \"managerName\": \"Manager A\",\n            \"managerEmail\": \"managerA@manager.com\"\n        },\n        {\n            \"id\": \"b00111ec-ef91-42df-86f3-0ad7bdae3105\",\n            \"name\": \"Hotel Prueba 6\",\n            \"city\": \"Las Palmas de Gran Canaria\",\n            \"country\": \"Spain\",\n            \"stars\": 4,\n            \"description\": \"Nuevo Hotel en la isla de Gran Canaria\",\n            \"managerName\": \"Manager A\",\n            \"managerEmail\": \"managerA@manager.com\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "8. Get Hotel By Id",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{base_url}}/hotel/af55bde9-b29f-44fb-a2dd-18fc78ebdffb",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "hotel",
+                "af55bde9-b29f-44fb-a2dd-18fc78ebdffb"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "8. Get Hotel By Id",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{base_url}}/hotel/af55bde9-b29f-44fb-a2dd-18fc78ebdffb",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "hotel",
+                    "af55bde9-b29f-44fb-a2dd-18fc78ebdffb"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "253"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"fd-D0+Eag6aszL6CF0CLHOqctT7w6U\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 11:53:20 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n    \"name\": \"Hotel Prueba 24\",\n    \"city\": \"Las Palmas de Gran Canaria\",\n    \"country\": \"Spain\",\n    \"stars\": 4,\n    \"description\": \"Nuevo Hotel en la isla de Gran Canaria\",\n    \"managerName\": \"Manager A\",\n    \"managerEmail\": \"managerA@manager.com\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "9. Manager B Trying To Update Manager A Hotel",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2OGQ2YzAyLTdlY2UtNDExNS04MjFkLTEzNGIwYmRkYzYwOSIsInJvbGUiOiJNQU5BR0VSIiwiaWF0IjoxNzc4ODQ1MjQyLCJleHAiOjE3Nzk0NTAwNDJ9.n1ocVAQEOViKQeK2JhqSE4up1ia4KaoUOn2hWQSo2Fw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{  \n    \"stars\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/hotel/af55bde9-b29f-44fb-a2dd-18fc78ebdffb",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "hotel",
+                "af55bde9-b29f-44fb-a2dd-18fc78ebdffb"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "9. Manager B Trying To Update Manager A Hotel",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{  \n    \"stars\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/hotel/af55bde9-b29f-44fb-a2dd-18fc78ebdffb",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "hotel",
+                    "af55bde9-b29f-44fb-a2dd-18fc78ebdffb"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "70"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"46-nDe7VvIb1F+7zbb8lUaBXpScuPI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 12:00:38 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"No tienes permiso para realizar esta acción en este hotel\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "10. Manager A Update His Hotel",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{  \n    \"description\": \"El hotel ha sido mejorado y ahora tiene 5 estrellas\",\n    \"stars\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/hotel/af55bde9-b29f-44fb-a2dd-18fc78ebdffb",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "hotel",
+                "af55bde9-b29f-44fb-a2dd-18fc78ebdffb"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "10. Manager A Update His Hotel",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{  \n    \"description\": \"El hotel ha sido mejorado y ahora tiene 5 estrellas\",\n    \"stars\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/hotel/af55bde9-b29f-44fb-a2dd-18fc78ebdffb",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "hotel",
+                    "af55bde9-b29f-44fb-a2dd-18fc78ebdffb"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "306"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"132-bw6znAkGluMJa2fpMrxmIL1PgCo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 12:01:34 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Hotel actualizado\",\n    \"hotel\": {\n        \"id\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n        \"name\": \"Hotel Prueba 24\",\n        \"city\": \"Las Palmas de Gran Canaria\",\n        \"country\": \"Spain\",\n        \"stars\": 5,\n        \"description\": \"El hotel ha sido mejorado y ahora tiene 5 estrellas\",\n        \"managerName\": \"Manager A\",\n        \"managerEmail\": \"managerA@manager.com\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "11. Manager B Try To Delete Manager A Hotel",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2OGQ2YzAyLTdlY2UtNDExNS04MjFkLTEzNGIwYmRkYzYwOSIsInJvbGUiOiJNQU5BR0VSIiwiaWF0IjoxNzc4ODQ1MjQyLCJleHAiOjE3Nzk0NTAwNDJ9.n1ocVAQEOViKQeK2JhqSE4up1ia4KaoUOn2hWQSo2Fw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/hotel/af55bde9-b29f-44fb-a2dd-18fc78ebdffb",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "hotel",
+                "af55bde9-b29f-44fb-a2dd-18fc78ebdffb"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "11. Manager B Try To Delete Manager A Hotel",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/hotel/af55bde9-b29f-44fb-a2dd-18fc78ebdffb",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "hotel",
+                    "af55bde9-b29f-44fb-a2dd-18fc78ebdffb"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "70"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"46-nDe7VvIb1F+7zbb8lUaBXpScuPI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 12:02:14 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"No tienes permiso para realizar esta acción en este hotel\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "12. Manager A Delete His Hotel",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{base_url}}/hotel/b00111ec-ef91-42df-86f3-0ad7bdae3105",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "hotel",
+                "b00111ec-ef91-42df-86f3-0ad7bdae3105"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "12. Manager A Delete His Hotel",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{base_url}}/hotel/b00111ec-ef91-42df-86f3-0ad7bdae3105",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "hotel",
+                    "b00111ec-ef91-42df-86f3-0ad7bdae3105"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "40"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"28-EqXMtF6VUvH4uTh0NB520kr3OBQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 12:03:20 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Hotel eliminado con éxito\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Room",
+      "item": [
+        {
+          "name": "13. Create Room (Failed)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2OGQ2YzAyLTdlY2UtNDExNS04MjFkLTEzNGIwYmRkYzYwOSIsInJvbGUiOiJNQU5BR0VSIiwiaWF0IjoxNzc4ODQ1MjQyLCJleHAiOjE3Nzk0NTAwNDJ9.n1ocVAQEOViKQeK2JhqSE4up1ia4KaoUOn2hWQSo2Fw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"number\": 101,\n    \"type\": \"DOUBLE\",\n    \"capacity\": 3,\n    \"price\": 85.99,\n    \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/room",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "room"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "13. Create Room (Failed)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"number\": 101,\n    \"type\": \"DOUBLE\",\n    \"capacity\": 3,\n    \"price\": 85.99,\n    \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/room",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "room"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "68"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"44-MIeqnegXUnCsfQeDAG8uBmAs6VE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 12:10:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"No tienes permiso para añadir habitaciones a este hotel\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "14. Create Room",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"number\": 101,\n    \"type\": \"DOUBLE\",\n    \"capacity\": 3,\n    \"price\": 85.99,\n    \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/room",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "room"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "14. Create Room",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"number\": 101,\n    \"type\": \"DOUBLE\",\n    \"capacity\": 3,\n    \"price\": 85.99,\n    \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/room",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "room"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "231"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"e7-10kE0SZlLcDld3Ri4Te/+LBYJtw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 12:10:51 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Habitación creada con éxito\",\n    \"room\": {\n        \"id\": \"bdfb68b0-af7d-471c-ba7a-31d526c7790b\",\n        \"number\": 101,\n        \"type\": \"DOUBLE\",\n        \"capacity\": 3,\n        \"price\": 85.99,\n        \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n        \"hotelName\": \"Hotel Prueba 24\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "15. Not Duplicated Room",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"number\": 101,\n    \"type\": \"DOUBLE\",\n    \"capacity\": 3,\n    \"price\": 85.99,\n    \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/room",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "room"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "15. Not Duplicated Room",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"number\": 101,\n    \"type\": \"DOUBLE\",\n    \"capacity\": 3,\n    \"price\": 85.99,\n    \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/room",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "room"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "82"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"52-AdVBeTQFTQ4HDwkcwCB/8CW9+7E\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 12:17:17 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"El hotel 'Hotel Prueba 24' ya tiene una habitación con el número 101\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "16. Create Room (Failed - Zod Validation)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"number\": 101,\n    \"type\": \"DOUBLE\",\n    \"capacity\": 3,\n    \"price\": -85.99,\n    \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/room",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "room"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "16. Create Room (Failed - Zod Validation)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"number\": 101,\n    \"type\": \"DOUBLE\",\n    \"capacity\": 3,\n    \"price\": -85.99,\n    \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/room",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "room"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "103"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"67-NI4CRCO4Mz6nrpRlHPzYtDAkci4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 12:22:44 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Error de validación de datos\",\n    \"detalles\": [\n        \"price: El precio debe ser un número mayor a 0\"\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "17. Gel All Rooms",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/room",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "room"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "17. Gel All Rooms",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/room",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "room"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1909"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"775-goAHd+rWydMaT2TCF/1wPXkUShU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 12:25:12 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"results\": 10,\n    \"pagination\": {\n        \"totalRecords\": 11,\n        \"totalPages\": 2,\n        \"currentPage\": 1,\n        \"limit\": 10\n    },\n    \"rooms\": [\n        {\n            \"id\": \"bdfb68b0-af7d-471c-ba7a-31d526c7790b\",\n            \"number\": 101,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        },\n        {\n            \"id\": \"70998e39-c261-4985-b9b9-f0faeffec79f\",\n            \"number\": 102,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        },\n        {\n            \"id\": \"c7efb08b-a695-4b1d-851d-af422a021bd5\",\n            \"number\": 103,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        },\n        {\n            \"id\": \"59bab14f-7f5d-4f85-b5e9-5ca4f3aed5fd\",\n            \"number\": 104,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        },\n        {\n            \"id\": \"3d2b9ec5-ffe5-4520-9367-58adbd022cde\",\n            \"number\": 105,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        },\n        {\n            \"id\": \"ee3f9765-8f87-44da-af77-b6f13f221df2\",\n            \"number\": 106,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        },\n        {\n            \"id\": \"8604d622-38f1-4383-97d0-b9beaf8efe5e\",\n            \"number\": 107,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        },\n        {\n            \"id\": \"1602ed45-2ec1-4e4d-aa1a-5781abc853c0\",\n            \"number\": 108,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        },\n        {\n            \"id\": \"ef96c08f-2f66-4f4a-8efc-3db28bfa8cfd\",\n            \"number\": 109,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        },\n        {\n            \"id\": \"3e33572d-2f8c-40aa-975d-f442f2c23e95\",\n            \"number\": 201,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "18. Get All Rooms (Filter by Name)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/room?hotelName=prueba",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "room"
+              ],
+              "query": [
+                {
+                  "key": "hotelName",
+                  "value": "prueba",
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "18. Get All Rooms (Filter by Name)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/room?hotelName=prueba",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "room"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelName",
+                      "value": "prueba"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1909"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"775-goAHd+rWydMaT2TCF/1wPXkUShU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 12:27:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"results\": 10,\n    \"pagination\": {\n        \"totalRecords\": 11,\n        \"totalPages\": 2,\n        \"currentPage\": 1,\n        \"limit\": 10\n    },\n    \"rooms\": [\n        {\n            \"id\": \"bdfb68b0-af7d-471c-ba7a-31d526c7790b\",\n            \"number\": 101,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        },\n        {\n            \"id\": \"70998e39-c261-4985-b9b9-f0faeffec79f\",\n            \"number\": 102,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        },\n        {\n            \"id\": \"c7efb08b-a695-4b1d-851d-af422a021bd5\",\n            \"number\": 103,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        },\n        {\n            \"id\": \"59bab14f-7f5d-4f85-b5e9-5ca4f3aed5fd\",\n            \"number\": 104,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        },\n        {\n            \"id\": \"3d2b9ec5-ffe5-4520-9367-58adbd022cde\",\n            \"number\": 105,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        },\n        {\n            \"id\": \"ee3f9765-8f87-44da-af77-b6f13f221df2\",\n            \"number\": 106,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        },\n        {\n            \"id\": \"8604d622-38f1-4383-97d0-b9beaf8efe5e\",\n            \"number\": 107,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        },\n        {\n            \"id\": \"1602ed45-2ec1-4e4d-aa1a-5781abc853c0\",\n            \"number\": 108,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        },\n        {\n            \"id\": \"ef96c08f-2f66-4f4a-8efc-3db28bfa8cfd\",\n            \"number\": 109,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        },\n        {\n            \"id\": \"3e33572d-2f8c-40aa-975d-f442f2c23e95\",\n            \"number\": 201,\n            \"type\": \"DOUBLE\",\n            \"capacity\": 3,\n            \"price\": 85.99,\n            \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n            \"hotelName\": \"Hotel Prueba 24\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "19. Get Room By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/room/3d2b9ec5-ffe5-4520-9367-58adbd022cde",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "room",
+                "3d2b9ec5-ffe5-4520-9367-58adbd022cde"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "19. Get Room By ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/room/3d2b9ec5-ffe5-4520-9367-58adbd022cde",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "room",
+                    "3d2b9ec5-ffe5-4520-9367-58adbd022cde"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "236"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"ec-PPy7unCPZcJX9JjxxHnWWdSxBTM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 12:29:27 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"3d2b9ec5-ffe5-4520-9367-58adbd022cde\",\n    \"number\": 105,\n    \"type\": \"DOUBLE\",\n    \"capacity\": 3,\n    \"price\": 85.99,\n    \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n    \"hotelName\": \"Hotel Prueba 24\",\n    \"hotelCity\": \"Las Palmas de Gran Canaria\",\n    \"hotelStars\": 5\n}"
+            }
+          ]
+        },
+        {
+          "name": "20. Get Room By ID (Failed)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/room/3d2b9ec5-ffe5-4520-9367-58adbd022cd",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "room",
+                "3d2b9ec5-ffe5-4520-9367-58adbd022cd"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "20. Get Room By ID (Failed)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/room/3d2b9ec5-ffe5-4520-9367-58adbd022cd",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "room",
+                    "3d2b9ec5-ffe5-4520-9367-58adbd022cd"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "37"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"25-BHAaARUzVy+DtCeIl1GzbsZ3G2U\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 12:31:41 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Habitación no encontrada\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "21. Update Room (Failed)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2OGQ2YzAyLTdlY2UtNDExNS04MjFkLTEzNGIwYmRkYzYwOSIsInJvbGUiOiJNQU5BR0VSIiwiaWF0IjoxNzc4ODQ1MjQyLCJleHAiOjE3Nzk0NTAwNDJ9.n1ocVAQEOViKQeK2JhqSE4up1ia4KaoUOn2hWQSo2Fw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"price\": 99.99\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/room/3d2b9ec5-ffe5-4520-9367-58adbd022cde",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "room",
+                "3d2b9ec5-ffe5-4520-9367-58adbd022cde"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "21. Update Room (Failed)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"price\": 99.99\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/room/3d2b9ec5-ffe5-4520-9367-58adbd022cde",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "room",
+                    "3d2b9ec5-ffe5-4520-9367-58adbd022cde"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "61"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3d-gv9Vxrpfj/Y0foPjcG4L4lglYI8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 12:33:17 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"No tienes permiso para modificar esta habitación\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "22. Update Room (Failed Room Already Exists)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"number\": 101\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/room/3d2b9ec5-ffe5-4520-9367-58adbd022cde",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "room",
+                "3d2b9ec5-ffe5-4520-9367-58adbd022cde"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "22. Update Room (Failed Room Already Exists)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"number\": 101\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/room/3d2b9ec5-ffe5-4520-9367-58adbd022cde",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "room",
+                    "3d2b9ec5-ffe5-4520-9367-58adbd022cde"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "54"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"36-7zMEjWLwzzL+mqyk0kSJq8m2ovo\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 12:35:14 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"Ya existe la habitación 101 en este hotel\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "23. Update Room",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"price\": 99.99\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/room/3d2b9ec5-ffe5-4520-9367-58adbd022cde",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "room",
+                "3d2b9ec5-ffe5-4520-9367-58adbd022cde"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "23. Update Room",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"price\": 99.99\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/room/3d2b9ec5-ffe5-4520-9367-58adbd022cde",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "room",
+                    "3d2b9ec5-ffe5-4520-9367-58adbd022cde"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "239"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"ef-rf1eEf3c60OEon5bJzrjrAk7uzg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 12:36:19 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Habitación actualizada correctamente\",\n    \"room\": {\n        \"id\": \"3d2b9ec5-ffe5-4520-9367-58adbd022cde\",\n        \"number\": 105,\n        \"type\": \"DOUBLE\",\n        \"capacity\": 3,\n        \"price\": 99.99,\n        \"hotelId\": \"af55bde9-b29f-44fb-a2dd-18fc78ebdffb\",\n        \"hotelName\": \"Hotel Prueba 24\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "24. Delete Room (Failed)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ2OGQ2YzAyLTdlY2UtNDExNS04MjFkLTEzNGIwYmRkYzYwOSIsInJvbGUiOiJNQU5BR0VSIiwiaWF0IjoxNzc4ODQ1MjQyLCJleHAiOjE3Nzk0NTAwNDJ9.n1ocVAQEOViKQeK2JhqSE4up1ia4KaoUOn2hWQSo2Fw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{base_url}}/room/3d2b9ec5-ffe5-4520-9367-58adbd022cde",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "room",
+                "3d2b9ec5-ffe5-4520-9367-58adbd022cde"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "24. Delete Room (Failed)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{base_url}}/room/3d2b9ec5-ffe5-4520-9367-58adbd022cde",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "room",
+                    "3d2b9ec5-ffe5-4520-9367-58adbd022cde"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "60"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3c-qHNDtqUItb+a1kgmtGtrtGnk8qk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 12:38:03 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"error\": \"No tienes permiso para eliminar esta habitación\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "25. Delete Room",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{base_url}}/room/3d2b9ec5-ffe5-4520-9367-58adbd022cde",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "room",
+                "3d2b9ec5-ffe5-4520-9367-58adbd022cde"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "25. Delete Room",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{base_url}}/room/3d2b9ec5-ffe5-4520-9367-58adbd022cde",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "room",
+                    "3d2b9ec5-ffe5-4520-9367-58adbd022cde"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "46"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2e-pUVR/RztBHWoVRiA+344ngzSwaY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 12:38:53 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Habitación eliminada con éxito\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Booking",
+      "item": [
+        {
+          "name": "26. Create Booking",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiYjllZWUyLWRmMDUtNGMzZi04ZjY0LWJjM2U3Y2UyNzVhZiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzc4OTM4Njc4LCJleHAiOjE3Nzk1NDM0Nzh9.NyR5h9PyvKFGehtx1RStQgaGpsJCzZSvJNJVdCA4XnE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roomId\": \"d7473223-decc-4dff-a7b1-b74b7d685be6\",\n  \"checkIn\": \"2026-12-01T14:00:00.000Z\",\n  \"checkOut\": \"2026-12-05T12:00:00.000Z\"\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/booking",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "booking"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "26. Create Booking",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roomId\": \"d7473223-decc-4dff-a7b1-b74b7d685be6\",\n  \"checkIn\": \"2026-12-01T14:00:00.000Z\",\n  \"checkOut\": \"2026-12-05T12:00:00.000Z\"\n}\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/booking",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "booking"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "376"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"178-/pSqDSPExTG6vEQOk72CSzbWlUg\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 16 May 2026 13:39:44 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Reserva creada con éxito\",\n    \"booking\": {\n        \"id\": \"fecd4b25-6933-434e-9fca-b17f291996af\",\n        \"checkIn\": \"2026-12-01T14:00:00.000Z\",\n        \"checkOut\": \"2026-12-05T12:00:00.000Z\",\n        \"status\": \"PENDING\",\n        \"totalPrice\": 599.96,\n        \"createdAt\": \"2026-05-16T13:39:44.145Z\",\n        \"userName\": \"Juan Pérez\",\n        \"userEmail\": \"juan@email.com\",\n        \"roomNumber\": 201,\n        \"roomType\": \"DOUBLE\",\n        \"hotelName\": \"Hotel Gran Vía Madrid\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "27. Get All Bookings",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiYjllZWUyLWRmMDUtNGMzZi04ZjY0LWJjM2U3Y2UyNzVhZiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzc4OTM4Njc4LCJleHAiOjE3Nzk1NDM0Nzh9.NyR5h9PyvKFGehtx1RStQgaGpsJCzZSvJNJVdCA4XnE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{base_url}}/booking",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "booking"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "27. Get All Bookings",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{base_url}}/booking",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "booking"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "1404"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"57c-SvauUcSzvB2Kihj7lhpzaGmUpa8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 16 May 2026 13:42:44 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"results\": 4,\n    \"pagination\": {\n        \"totalRecords\": 4,\n        \"currentPage\": 1,\n        \"totalPages\": 1\n    },\n    \"bookings\": [\n        {\n            \"id\": \"fecd4b25-6933-434e-9fca-b17f291996af\",\n            \"checkIn\": \"2026-12-01T14:00:00.000Z\",\n            \"checkOut\": \"2026-12-05T12:00:00.000Z\",\n            \"status\": \"PENDING\",\n            \"totalPrice\": 599.96,\n            \"createdAt\": \"2026-05-16T13:39:44.145Z\",\n            \"userName\": \"Juan Pérez\",\n            \"userEmail\": \"juan@email.com\",\n            \"roomNumber\": 201,\n            \"roomType\": \"DOUBLE\",\n            \"hotelName\": \"Hotel Gran Vía Madrid\"\n        },\n        {\n            \"id\": \"dd48d58d-feee-4fe8-9706-0ff757f5d660\",\n            \"checkIn\": \"2026-06-15T14:00:00.000Z\",\n            \"checkOut\": \"2026-06-20T12:00:00.000Z\",\n            \"status\": \"CONFIRMED\",\n            \"totalPrice\": 749.95,\n            \"createdAt\": \"2026-05-16T13:18:58.107Z\",\n            \"userName\": \"Juan Pérez\",\n            \"userEmail\": \"juan@email.com\",\n            \"roomNumber\": 201,\n            \"roomType\": \"DOUBLE\",\n            \"hotelName\": \"Hotel Gran Vía Madrid\"\n        },\n        {\n            \"id\": \"1ad447cf-93f9-4507-8e3f-b39168877253\",\n            \"checkIn\": \"2026-07-01T14:00:00.000Z\",\n            \"checkOut\": \"2026-07-04T12:00:00.000Z\",\n            \"status\": \"PENDING\",\n            \"totalPrice\": 389.97,\n            \"createdAt\": \"2026-05-16T13:18:58.107Z\",\n            \"userName\": \"Juan Pérez\",\n            \"userEmail\": \"juan@email.com\",\n            \"roomNumber\": 101,\n            \"roomType\": \"DOUBLE\",\n            \"hotelName\": \"Hotel Mediterráneo Barcelona\"\n        },\n        {\n            \"id\": \"0c8e13b3-3470-4552-a662-4cc03313ebe8\",\n            \"checkIn\": \"2026-09-01T14:00:00.000Z\",\n            \"checkOut\": \"2026-09-03T12:00:00.000Z\",\n            \"status\": \"CANCELLED\",\n            \"totalPrice\": 379.98,\n            \"createdAt\": \"2026-05-16T13:18:58.107Z\",\n            \"userName\": \"Juan Pérez\",\n            \"userEmail\": \"juan@email.com\",\n            \"roomNumber\": 301,\n            \"roomType\": \"SUITE\",\n            \"hotelName\": \"Hotel Sierra Nevada\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "28. Get All Bookings (Filter by PENDING)",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiYjllZWUyLWRmMDUtNGMzZi04ZjY0LWJjM2U3Y2UyNzVhZiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzc4OTM4Njc4LCJleHAiOjE3Nzk1NDM0Nzh9.NyR5h9PyvKFGehtx1RStQgaGpsJCzZSvJNJVdCA4XnE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{base_url}}/booking?status=PENDING",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "booking"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "PENDING"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "28. Get All Bookings (Filter by PENDING)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{base_url}}/booking?status=PENDING",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "booking"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "PENDING"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "750"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2ee-8y2FbfRgtRPhNgXn+un+ULDYJjM\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 16 May 2026 13:43:54 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"results\": 2,\n    \"pagination\": {\n        \"totalRecords\": 2,\n        \"currentPage\": 1,\n        \"totalPages\": 1\n    },\n    \"bookings\": [\n        {\n            \"id\": \"fecd4b25-6933-434e-9fca-b17f291996af\",\n            \"checkIn\": \"2026-12-01T14:00:00.000Z\",\n            \"checkOut\": \"2026-12-05T12:00:00.000Z\",\n            \"status\": \"PENDING\",\n            \"totalPrice\": 599.96,\n            \"createdAt\": \"2026-05-16T13:39:44.145Z\",\n            \"userName\": \"Juan Pérez\",\n            \"userEmail\": \"juan@email.com\",\n            \"roomNumber\": 201,\n            \"roomType\": \"DOUBLE\",\n            \"hotelName\": \"Hotel Gran Vía Madrid\"\n        },\n        {\n            \"id\": \"1ad447cf-93f9-4507-8e3f-b39168877253\",\n            \"checkIn\": \"2026-07-01T14:00:00.000Z\",\n            \"checkOut\": \"2026-07-04T12:00:00.000Z\",\n            \"status\": \"PENDING\",\n            \"totalPrice\": 389.97,\n            \"createdAt\": \"2026-05-16T13:18:58.107Z\",\n            \"userName\": \"Juan Pérez\",\n            \"userEmail\": \"juan@email.com\",\n            \"roomNumber\": 101,\n            \"roomType\": \"DOUBLE\",\n            \"hotelName\": \"Hotel Mediterráneo Barcelona\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "29. Get Booking By ID",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiYjllZWUyLWRmMDUtNGMzZi04ZjY0LWJjM2U3Y2UyNzVhZiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzc4OTM4Njc4LCJleHAiOjE3Nzk1NDM0Nzh9.NyR5h9PyvKFGehtx1RStQgaGpsJCzZSvJNJVdCA4XnE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{base_url}}/booking/dd48d58d-feee-4fe8-9706-0ff757f5d660",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "booking",
+                "dd48d58d-feee-4fe8-9706-0ff757f5d660"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "29. Get Booking By ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{base_url}}/booking/dd48d58d-feee-4fe8-9706-0ff757f5d660",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "booking",
+                    "dd48d58d-feee-4fe8-9706-0ff757f5d660"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "328"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"148-7MKBtRyiklpfnt5QmBOQMowaKNU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 16 May 2026 13:45:19 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"dd48d58d-feee-4fe8-9706-0ff757f5d660\",\n    \"checkIn\": \"2026-06-15T14:00:00.000Z\",\n    \"checkOut\": \"2026-06-20T12:00:00.000Z\",\n    \"status\": \"CONFIRMED\",\n    \"totalPrice\": 749.95,\n    \"createdAt\": \"2026-05-16T13:18:58.107Z\",\n    \"userName\": \"Juan Pérez\",\n    \"userEmail\": \"juan@email.com\",\n    \"roomNumber\": 201,\n    \"roomType\": \"DOUBLE\",\n    \"hotelName\": \"Hotel Gran Vía Madrid\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "30. Update Booking (CONFIRMED To CANCELLED)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRiYjllZWUyLWRmMDUtNGMzZi04ZjY0LWJjM2U3Y2UyNzVhZiIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzc4OTM4Njc4LCJleHAiOjE3Nzk1NDM0Nzh9.NyR5h9PyvKFGehtx1RStQgaGpsJCzZSvJNJVdCA4XnE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"status\": \"CANCELLED\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/booking/dd48d58d-feee-4fe8-9706-0ff757f5d660",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "booking",
+                "dd48d58d-feee-4fe8-9706-0ff757f5d660"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "30. Update Booking (CONFIRMED To CANCELLED)",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"status\": \"CANCELLED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/booking/dd48d58d-feee-4fe8-9706-0ff757f5d660",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "booking",
+                    "dd48d58d-feee-4fe8-9706-0ff757f5d660"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "386"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"182-w+f399ci+SMo0yZGaCKUHZVzO7U\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 16 May 2026 13:47:15 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Reserva actualizada correctamente\",\n    \"booking\": {\n        \"id\": \"dd48d58d-feee-4fe8-9706-0ff757f5d660\",\n        \"checkIn\": \"2026-06-15T14:00:00.000Z\",\n        \"checkOut\": \"2026-06-20T12:00:00.000Z\",\n        \"status\": \"CANCELLED\",\n        \"totalPrice\": 749.95,\n        \"createdAt\": \"2026-05-16T13:18:58.107Z\",\n        \"userName\": \"Juan Pérez\",\n        \"userEmail\": \"juan@email.com\",\n        \"roomNumber\": 201,\n        \"roomType\": \"DOUBLE\",\n        \"hotelName\": \"Hotel Gran Vía Madrid\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "31. Delete Booking (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJkZjhjYTFjLTliNDMtNGE5OS05YTMwLTM2ZmZmYTk1ODY3NSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3ODkzOTM2MywiZXhwIjoxNzc5NTQ0MTYzfQ.mt2pM9L4Ji0hqKVA6QAqQpWZgWXkRcZTr1lvYS5unok",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/booking/dd48d58d-feee-4fe8-9706-0ff757f5d660",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "booking",
+                "dd48d58d-feee-4fe8-9706-0ff757f5d660"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "31. Delete Booking (Admin)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/booking/dd48d58d-feee-4fe8-9706-0ff757f5d660",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "booking",
+                    "dd48d58d-feee-4fe8-9706-0ff757f5d660"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "42"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2a-nAzWCUhoR55GVjIhHLS4tYhu7JU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 16 May 2026 13:50:18 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Reserva eliminada con éxito\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "32. My Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/user/me",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "user",
+                "me"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "My Profile",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/user/me",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "user",
+                    "me"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "151"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"97-QYqJ6abwf1NBactdPHjR+cGkLok\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 16:42:46 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"b142a3fd-2144-4f91-a2ce-47de76af8f81\",\n    \"name\": \"Manager A\",\n    \"email\": \"managerA@manager.com\",\n    \"role\": \"MANAGER\",\n    \"createdAt\": \"2026-05-15T11:36:25.718Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "33. Update My Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Manager A actualizado\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/user/me",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "user",
+                "me"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update My Profile",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Manager A actualizado\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/user/me",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "user",
+                    "me"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "217"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"d9-HZyQ7L+DMRRj1ENYtiMzGtW5XIQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 16:49:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Perfil actualizado correctamente\",\n    \"user\": {\n        \"id\": \"b142a3fd-2144-4f91-a2ce-47de76af8f81\",\n        \"name\": \"Manager A actualizado\",\n        \"email\": \"managerA@manager.com\",\n        \"role\": \"MANAGER\",\n        \"createdAt\": \"2026-05-15T11:36:25.718Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "34. List Users (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImViYTM0OTM2LTc5OTQtNGU0My05N2JmLTY4OTE2OGM3ZTA0MSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3ODg2NDAyMSwiZXhwIjoxNzc5NDY4ODIxfQ.idgUNWAZBrwxfmKKuE5D-4E42S3Foh8FjPIQTd8804c",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "user"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "List Users (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/user",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "692"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2b4-MJ3khtg9akh36NE6BmfuyY+J21I\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 16:56:18 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"results\": 4,\n    \"pagination\": {\n        \"totalRecords\": 4,\n        \"currentPage\": 1,\n        \"totalPages\": 1\n    },\n    \"users\": [\n        {\n            \"id\": \"dbbf88bd-98d6-471d-8e84-af5cd56cfc1a\",\n            \"name\": \"NuevoNombre\",\n            \"email\": \"bookingtest@test.com\",\n            \"role\": \"USER\",\n            \"createdAt\": \"2026-05-15T15:08:58.390Z\"\n        },\n        {\n            \"id\": \"eba34936-7994-4e43-97bf-689168c7e041\",\n            \"name\": \"Noah\",\n            \"email\": \"noah@admin.com\",\n            \"role\": \"ADMIN\",\n            \"createdAt\": \"2026-05-15T11:40:04.312Z\"\n        },\n        {\n            \"id\": \"468d6c02-7ece-4115-821d-134b0bddc609\",\n            \"name\": \"Manager B\",\n            \"email\": \"managerB@manager.com\",\n            \"role\": \"MANAGER\",\n            \"createdAt\": \"2026-05-15T11:39:06.552Z\"\n        },\n        {\n            \"id\": \"b142a3fd-2144-4f91-a2ce-47de76af8f81\",\n            \"name\": \"Manager A actualizado\",\n            \"email\": \"managerA@manager.com\",\n            \"role\": \"MANAGER\",\n            \"createdAt\": \"2026-05-15T11:36:25.718Z\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "35. Get User Profile By ID (Admin)",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImViYTM0OTM2LTc5OTQtNGU0My05N2JmLTY4OTE2OGM3ZTA0MSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc3ODg2NDAyMSwiZXhwIjoxNzc5NDY4ODIxfQ.idgUNWAZBrwxfmKKuE5D-4E42S3Foh8FjPIQTd8804c",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/user/b142a3fd-2144-4f91-a2ce-47de76af8f81",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "user",
+                "b142a3fd-2144-4f91-a2ce-47de76af8f81"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get User Profile By ID (Admin)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/user/b142a3fd-2144-4f91-a2ce-47de76af8f81",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "user",
+                    "b142a3fd-2144-4f91-a2ce-47de76af8f81"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "197"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"c5-qs7o06XKcPVTvjYaa6ufyHPBEFk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 16:58:50 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"b142a3fd-2144-4f91-a2ce-47de76af8f81\",\n    \"name\": \"Manager A actualizado\",\n    \"email\": \"managerA@manager.com\",\n    \"role\": \"MANAGER\",\n    \"createdAt\": \"2026-05-15T11:36:25.718Z\",\n    \"totalHotels\": 3,\n    \"totalBookings\": 0\n}"
+            }
+          ]
+        },
+        {
+          "name": "36. Delete My User Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBiOTY2NWE1LWE0OGEtNGFjZC1hYTM2LWM0ZTI0NzRhY2NmMSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzc4ODY0NjIyLCJleHAiOjE3Nzk0Njk0MjJ9.dbMfGwlUuu27bf_utyiSJDIOrG3j-9f5CxbKGOPVnBM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/user/me",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "user",
+                "me"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Delete My User Profile",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/user/me",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "user",
+                    "me"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "42"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2a-fKGoZIfnICznnZWZa8nspGjnKAI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 15 May 2026 17:12:59 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Usuario eliminado con éxito\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

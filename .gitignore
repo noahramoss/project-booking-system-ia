@@ -1,0 +1,8 @@
+.env
+node_modules
+/src/generated/prisma
+avance_final-project.md
+DEFENSA.md
+DEFENSA.pdf
+falta.md
+proyecto_final.md

@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  MANAGER
+  ADMIN
+}
+
+enum RoomType {
+  SINGLE
+  DOUBLE
+  SUITE
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
+
+model User {
+  id           String   @id @default(uuid())
+  name         String   @db.VarChar(100)
+  email        String   @unique @db.VarChar(150)
+  passwordHash String   @map("password_hash") @db.VarChar(255)
+  role         Role     @default(USER)
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  hotels   Hotel[]
+  bookings Booking[]
+
+  @@map("users")
+}
+
+model Hotel {
+  id          String   @id @default(uuid())
+  name        String   @unique @db.VarChar(200)
+  description String?  @db.Text
+  city        String   @db.VarChar(100)
+  country     String   @db.VarChar(100)
+  stars       Int
+  managerId   String   @map("manager_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  manager User   @relation(fields: [managerId], references: [id], onDelete: Cascade)
+  rooms   Room[]
+
+  @@map("hotels")
+}
+
+model Room {
+  id        String   @id @default(uuid())
+  number    Int
+  type      RoomType @default(SINGLE)
+  capacity  Int
+  price     Decimal  @db.Decimal(10, 2)
+  hotelId   String   @map("hotel_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  hotel    Hotel     @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  bookings Booking[]
+
+  @@unique([hotelId, number])
+  @@map("rooms")
+}
+
+model Booking {
+  id         String        @id @default(uuid())
+  userId     String        @map("user_id")
+  roomId     String        @map("room_id")
+  checkIn    DateTime      @map("check_in")
+  checkOut   DateTime      @map("check_out")
+  status     BookingStatus @default(PENDING)
+  totalPrice Decimal       @db.Decimal(20, 2)
+  createdAt  DateTime      @default(now()) @map("created_at")
+  updatedAt  DateTime      @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  room Room @relation(fields: [roomId], references: [id], onDelete: Cascade)
+
+  @@map("bookings")
+}
