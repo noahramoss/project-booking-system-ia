@@ -8,7 +8,8 @@
     "start": "node server.js",
     "dev:backend": "nodemon server.js",
     "dev:frontend": "npm run dev --prefix frontend",
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\""
+    "dev:ai": "cd ai_service && source venv/bin/activate && uvicorn main:app --port 8000",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\" \"npm run dev:ai\""
   },
   "prisma": {
     "seed": "node prisma/seed.js"
@@ -31,8 +32,11 @@
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "express-rate-limit": "^8.5.2",
+    "helmet": "^8.2.0",
     "jsonwebtoken": "^9.0.3",
     "morgan": "^1.10.1",
+    "pgvector": "^0.3.0",
     "prisma": "^6.19.3",
     "zod": "^4.4.3"
   },

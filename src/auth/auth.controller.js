@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import prisma from "../config/prisma.js";
 import AppError from "../utils/AppError.js";
+import { sendN8nWebhook } from "../utils/webhook.js";
 
 const SALT_ROUNDS = 10;
 
@@ -33,6 +34,9 @@ export const register = async (req, res, next) => {
         role: true,
       },
     });
+
+    // Enviamos evento a N8N
+    sendN8nWebhook("USER_REGISTERED", newUser);
 
     //Devolvemos los datos del usuario creado sin la contraseña
     res.status(201).json({
