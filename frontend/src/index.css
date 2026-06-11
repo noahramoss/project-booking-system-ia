@@ -22,6 +22,31 @@
   --radius-md: 0.375rem;
   --radius-lg: 0.5rem;
   --radius-xl: 0.75rem;
+
+  /* Chat Widget Colors */
+  --accent-color: var(--primary-color);
+  --accent-hover: var(--primary-hover);
+  --bg-primary: var(--background-color);
+  --bg-secondary: var(--card-bg);
+  --input-bg: #ffffff;
+  --chat-btn-text: #1e293b; /* Letra oscura en modo claro */
+  --glass-bg: rgba(255, 255, 255, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.6);
+}
+
+:root.dark {
+  --primary-color: #60a5fa;
+  --primary-hover: #3b82f6;
+  --secondary-color: #f8fafc;
+  --background-color: #0f172a;
+  --card-bg: #1e293b;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  --input-bg: #0f172a;
+  --chat-btn-text: #ffffff; /* Letra blanca en modo oscuro */
+  --glass-bg: rgba(30, 41, 59, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 * {
