@@ -1,0 +1,78 @@
+{
+  "name": "Booking System Events Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "booking-system-events",
+        "options": {}
+      },
+      "id": "webhook-node-1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$json.body.event}}",
+        "rules": {
+          "rules": [
+            { "value2": "USER_REGISTERED", "output": 0 },
+            { "value2": "BOOKING_CREATED", "output": 1 }
+          ]
+        }
+      },
+      "id": "switch-node-1",
+      "name": "Switch Event Type",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "welcome@grandhotel.com",
+        "toEmail": "={{$json.body.data.email}}",
+        "subject": "¡Bienvenido a Grand Hotel & Spa!",
+        "text": "Hola {{$json.body.data.name}}, gracias por unirte a nuestro programa de fidelización. ¡Esperamos verte pronto!",
+        "options": {}
+      },
+      "id": "email-node-1",
+      "name": "Send Welcome Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [700, 150]
+    },
+    {
+      "parameters": {
+        "fromEmail": "reservations@grandhotel.com",
+        "toEmail": "={{$json.body.data.userEmail}}",
+        "subject": "Confirmación de tu reserva - Grand Hotel",
+        "text": "Tu reserva para la habitación {{$json.body.data.roomNumber}} está confirmada. Check In: {{$json.body.data.checkIn}}.",
+        "options": {}
+      },
+      "id": "email-booking-node-1",
+      "name": "Send Booking Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [700, 450]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [ { "node": "Switch Event Type", "type": "main", "index": 0 } ]
+      ]
+    },
+    "Switch Event Type": {
+      "main": [
+        [ { "node": "Send Welcome Email", "type": "main", "index": 0 } ],
+        [ { "node": "Send Booking Email", "type": "main", "index": 0 } ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "1.1.0"
+}

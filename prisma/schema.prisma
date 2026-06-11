@@ -36,6 +36,7 @@ model User {
   name         String   @db.VarChar(100)
   email        String   @unique @db.VarChar(150)
   passwordHash String   @map("password_hash") @db.VarChar(255)
+  phone        String?  @db.VarChar(20)
   role         Role     @default(USER)
   createdAt    DateTime @default(now()) @map("created_at")
   updatedAt    DateTime @updatedAt @map("updated_at")
@@ -50,9 +51,11 @@ model Hotel {
   id          String   @id @default(uuid())
   name        String   @unique @db.VarChar(200)
   description String?  @db.Text
+  imageUrls   String[] @map("image_urls")
   city        String   @db.VarChar(100)
   country     String   @db.VarChar(100)
   stars       Int
+  isActive    Boolean  @default(true) @map("is_active")
   managerId   String   @map("manager_id")
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
@@ -69,6 +72,9 @@ model Room {
   type      RoomType @default(SINGLE)
   capacity  Int
   price     Decimal  @db.Decimal(10, 2)
+  imageUrls String[] @map("image_urls")
+  amenities String[]
+  isActive  Boolean  @default(true) @map("is_active")
   hotelId   String   @map("hotel_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
