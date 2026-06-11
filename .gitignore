@@ -6,3 +6,9 @@ DEFENSA.md
 DEFENSA.pdf
 falta.md
 proyecto_final.md
+estado-proyecto.md
+
+# Python & AI
+ai_service/venv/
+ai_service/chroma_db/
+__pycache__/
