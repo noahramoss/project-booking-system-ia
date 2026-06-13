@@ -33,25 +33,24 @@ Soy **Noah Ramos González**, Ingeniero Informático y estudiante del Bootcamp d
 ## 🏗️ Arquitectura
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                  FRONTEND — React (Netlify)                  │
-│   Auth Context · React Router · ChatWidget · Dashboards     │
-└───────────────────────────┬─────────────────────────────────┘
-                            │ HTTPS (JWT)
-┌───────────────────────────▼─────────────────────────────────┐
-│             BACKEND — Node + Express (Render)               │
-│   /auth /user /hotel /room /booking   +   /chat (gateway)   │
-│   Helmet · Rate-limit · CORS · Zod · JWT · Error handler    │
-└───────┬───────────────────────┬─────────────────────┬───────┘
-        │ Prisma                │ proxy /chat         │ webhook
-        ▼                       ▼                     ▼
-┌──────────────┐   ┌────────────────────────┐   ┌──────────────┐
-│  PostgreSQL  │   │  MICROSERVICIO IA       │   │     N8N      │
-│  (Supabase)  │   │  Python · FastAPI       │   │   (Cloud)    │
-│              │   │  LangGraph Agent        │   │  Switch +    │
-│              │◄──│  Tools → llama al backend│   │  Email       │
-│              │   │  RAG → ChromaDB         │   │  (Mailtrap)  │
-└──────────────┘   └────────────────────────┘   └──────────────┘
+┌───────────────────────────────────────────────────────────┐
+│                FRONTEND — React (Netlify)                 │
+│   Auth Context · React Router · ChatWidget · Dashboards   │
+└─────────────────────────────┬─────────────────────────────┘
+                              │ HTTPS (JWT)
+┌─────────────────────────────▼─────────────────────────────┐
+│             BACKEND — Node + Express (Render)             │
+│  /auth /user /hotel /room /booking   +   /chat (gateway)  │
+│  Helmet · Rate-limit · CORS · Zod · JWT · Error handler   │
+└───────┬─────────────────────┬─────────────────────┬───────┘
+        │ Prisma              │ proxy /chat         │ webhook
+┌───────▼───────┐   ┌─────────▼─────────┐   ┌───────▼───────┐
+│               │   │ MICROSERVICIO IA  │   │      N8N      │
+│  PostgreSQL   │   │ Python · FastAPI  │   │Switch + Email │
+│  (Supabase)   │   │  LangGraph Agent  │   │  (Mailtrap)   │
+│               │   │  Tools → backend  │   │               │
+│               │   │  RAG → ChromaDB   │   │               │
+└───────────────┘   └───────────────────┘   └───────────────┘
 ```
 
 El backend actúa como **gateway seguro**: el frontend nunca habla directamente con la IA. Cuando el cliente envía `POST /api/chat`, el backend valida la sesión y reenvía la petición (con el token) al microservicio de Python. El agente, a su vez, usa el propio backend como herramienta para consultar disponibilidad y reservas en tiempo real.
