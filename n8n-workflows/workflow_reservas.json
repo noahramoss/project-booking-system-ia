@@ -7,11 +7,15 @@
         "path": "booking-system-events",
         "options": {}
       },
-      "id": "webhook-node-1",
+      "id": "2e7b68c4-b6a6-4e80-a1ad-c1c48583245f",
       "name": "Webhook",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
-      "position": [250, 300]
+      "position": [
+        -448,
+        160
+      ],
+      "webhookId": "deabbab4-0c9b-4b5a-8875-72dca087cea9"
     },
     {
       "parameters": {
@@ -19,60 +23,115 @@
         "value1": "={{$json.body.event}}",
         "rules": {
           "rules": [
-            { "value2": "USER_REGISTERED", "output": 0 },
-            { "value2": "BOOKING_CREATED", "output": 1 }
+            {
+              "value2": "USER_REGISTERED"
+            },
+            {
+              "value2": "BOOKING_CREATED",
+              "output": 1
+            }
           ]
         }
       },
-      "id": "switch-node-1",
+      "id": "ec9f413b-5789-42ea-8aee-7166cd8d708e",
       "name": "Switch Event Type",
       "type": "n8n-nodes-base.switch",
       "typeVersion": 1,
-      "position": [450, 300]
+      "position": [
+        -256,
+        160
+      ]
     },
     {
       "parameters": {
-        "fromEmail": "welcome@grandhotel.com",
+        "fromEmail": "BookingSys <noreply@bookingsys.com>",
         "toEmail": "={{$json.body.data.email}}",
-        "subject": "¡Bienvenido a Grand Hotel & Spa!",
-        "text": "Hola {{$json.body.data.name}}, gracias por unirte a nuestro programa de fidelización. ¡Esperamos verte pronto!",
+        "subject": "=¡Bienvenido a BookingSys, {{$json.body.data.name}}! 🏨",
+        "text": "=Hola {{$json.body.data.name}},\n\n¡Gracias por registrarte en BookingSys! 🎉\n\nTu cuenta ya está activa. A partir de ahora puedes:\n• Buscar y reservar hoteles al mejor precio\n• Consultar tus reservas cuando quieras\n• Resolver tus dudas al instante con nuestro asistente virtual\n\n¡Esperamos que disfrutes de tu próxima estancia!\n\n— El equipo de BookingSys",
         "options": {}
       },
-      "id": "email-node-1",
+      "id": "4002bc2c-06e0-42fa-adb4-d09e07449128",
       "name": "Send Welcome Email",
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 1,
-      "position": [700, 150]
+      "position": [
+        0,
+        0
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "y6JKMWw8oESaFFgD",
+          "name": "SMTP account"
+        }
+      }
     },
     {
       "parameters": {
-        "fromEmail": "reservations@grandhotel.com",
+        "fromEmail": "BookingSys <noreply@bookingsys.com>",
         "toEmail": "={{$json.body.data.userEmail}}",
-        "subject": "Confirmación de tu reserva - Grand Hotel",
-        "text": "Tu reserva para la habitación {{$json.body.data.roomNumber}} está confirmada. Check In: {{$json.body.data.checkIn}}.",
+        "subject": "=Confirmación de tu reserva en {{$json.body.data.hotelName}} — BookingSys",
+        "text": "=Hola {{$json.body.data.userName}},\n\nHemos registrado tu reserva en BookingSys. Estos son los detalles:\n\n🏨 Hotel: {{$json.body.data.hotelName}}\n🛏️ Habitación: {{$json.body.data.roomType}} (nº {{$json.body.data.roomNumber}})\n📅 Entrada: {{ DateTime.fromISO($json.body.data.checkIn).toFormat('dd/MM/yyyy') }}\n📅 Salida: {{ DateTime.fromISO($json.body.data.checkOut).toFormat('dd/MM/yyyy') }}\n💶 Precio total: {{$json.body.data.totalPrice}} €\n📌 Estado: {{$json.body.data.status}}\n\nGracias por confiar en BookingSys. ¡Te deseamos un feliz viaje!\n\n— El equipo de BookingSys",
         "options": {}
       },
-      "id": "email-booking-node-1",
+      "id": "6ddfb29e-a0ad-4878-b670-79b0225ac95b",
       "name": "Send Booking Email",
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 1,
-      "position": [700, 450]
+      "position": [
+        0,
+        304
+      ],
+      "credentials": {
+        "smtp": {
+          "id": "y6JKMWw8oESaFFgD",
+          "name": "SMTP account"
+        }
+      }
     }
   ],
+  "pinData": {},
   "connections": {
     "Webhook": {
       "main": [
-        [ { "node": "Switch Event Type", "type": "main", "index": 0 } ]
+        [
+          {
+            "node": "Switch Event Type",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Switch Event Type": {
       "main": [
-        [ { "node": "Send Welcome Email", "type": "main", "index": 0 } ],
-        [ { "node": "Send Booking Email", "type": "main", "index": 0 } ]
+        [
+          {
+            "node": "Send Welcome Email",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Booking Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
-  "active": false,
-  "settings": {},
-  "versionId": "1.1.0"
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "5b16ad60-ac77-40aa-b460-8e117451d8d5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b022b3f33daa8eab79ffb0467cf1b784f295f382dd5dcca89f51cc9c28041376"
+  },
+  "nodeGroups": [],
+  "id": "8ACcjakkYAzPQofL",
+  "tags": []
 }
