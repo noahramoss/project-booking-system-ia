@@ -8,7 +8,7 @@ const SALT_ROUNDS = 10;
 
 export const register = async (req, res, next) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password } = req.body;
 
     //Verificamos si el usuario ya existe o se ha registrado con ese email
     const existingUser = await prisma.user.findUnique({ where: { email } });
@@ -25,7 +25,7 @@ export const register = async (req, res, next) => {
         name,
         email,
         passwordHash,
-        role: role || "USER",
+        role: "USER",
       },
       select: {
         id: true,

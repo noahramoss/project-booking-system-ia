@@ -7,6 +7,7 @@ import {
   getAllUsers,
   getUserById,
   updateUser,
+  updateUserRole,
   deleteUser,
 } from "./user.controller.js";
 
@@ -30,6 +31,9 @@ router.get("/", protect, restrictTo("MANAGER", "ADMIN"), getAllUsers);
 
 // Endpoint: GET /api/user/:id
 router.get("/:id", protect, restrictTo("MANAGER", "ADMIN"), getUserById);
+
+// Endpoint: PATCH /api/user/:id/role
+router.patch("/:id/role", protect, restrictTo("ADMIN"), updateUserRole);
 
 // Endpoint: DELETE /api/user/:id
 router.delete("/:id", protect, restrictTo("ADMIN"), deleteUser);

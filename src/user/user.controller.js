@@ -190,6 +190,42 @@ export const updateUser = async (req, res, next) => {
   }
 };
 
+export const updateUserRole = async (req, res, next) => {
+  try {
+    const { role } = req.body;
+    const targetId = req.params.id;
+
+    if (!["USER", "MANAGER", "ADMIN"].includes(role)) {
+      return next(new AppError("Rol inválido", 400));
+    }
+
+    if (targetId === req.user.id) {
+      return next(new AppError("No puedes cambiar tu propio rol", 400));
+    }
+
+    const user = await prisma.user.findUnique({
+      where: { id: targetId },
+    });
+
+    if (!user) {
+      return next(new AppError("Usuario no encontrado", 404));
+    }
+
+    const updatedUser = await prisma.user.update({
+      where: { id: targetId },
+      data: { role },
+      select: { id: true, name: true, email: true, role: true },
+    });
+
+    res.status(200).json({
+      message: "Rol de usuario actualizado con éxito",
+      user: updatedUser,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const deleteUser = async (req, res, next) => {
   try {
     // Si la ruta es /me, el usuario se elimina a sí mismo
