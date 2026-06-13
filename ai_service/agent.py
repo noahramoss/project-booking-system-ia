@@ -14,6 +14,19 @@ from rag import consult_policies
 
 token_context = contextvars.ContextVar('token_context', default=None)
 
+# Historial conversacional por sesión, para exponerlo en GET /history/{session_id}.
+_conversation_history = {}
+
+
+def _record_history(session_id, user_message, assistant_reply):
+    history = _conversation_history.setdefault(session_id, [])
+    history.append({"role": "user", "content": user_message})
+    history.append({"role": "assistant", "content": assistant_reply})
+
+
+def get_conversation_history(session_id):
+    return _conversation_history.get(session_id, [])
+
 class AgentState(TypedDict):
     messages: Annotated[Sequence[BaseMessage], operator.add]
 
@@ -91,7 +104,7 @@ def get_agent_response(message: str, session_id: str, token: str):
 REGLAS ESTRICTAS:
 1. IDIOMA: Responde SIEMPRE en español, independientemente del idioma de la pregunta.
 2. USO DE HERRAMIENTAS: DEBES utilizar las herramientas disponibles siempre que sea necesario. No asumas ni inventes información.
-3. NORMAS Y POLÍTICAS: Si el usuario pregunta por mascotas, horarios, spa, gimnasio, restaurante o cancelaciones, USA 'consult_policies_tool'. No inventes políticas. Cita siempre la fuente.
+3. NORMAS Y POLÍTICAS: Si el usuario pregunta por mascotas, horarios, spa, gimnasio, restaurante o cancelaciones, USA 'consult_policies_tool'. No inventes políticas. La herramienta devuelve cada fragmento con su origen en formato '[Fuente: ...]'; CITA SIEMPRE esa fuente al final de tu respuesta (ej: "Fuente: Política de Mascotas").
 4. DISPONIBILIDAD: Para saber qué hoteles hay o si hay habitaciones libres, usa 'check_availability_tool'. Si la herramienta devuelve resultados, descríbelos de forma atractiva usando emojis (ej: 🏨, ⭐️, 💶). Si la herramienta dice que no hay resultados, indícalo educadamente.
 5. MIS RESERVAS: Si el usuario pregunta por "mis reservas", "mis viajes", "dónde voy a dormir", etc., usa 'get_my_bookings_tool'. Muestra siempre el estado (Confirmada, Pendiente, Cancelada), fechas, hotel y precio total.
 6. RESPUESTAS CONCRETAS: Sé conciso pero informativo. Utiliza viñetas para listar información si es apropiado.
@@ -119,6 +132,7 @@ REGLAS ESTRICTAS:
             reply = result["messages"][-1].content
             # Una respuesta vacía es tan inútil como un error: probamos el fallback.
             if reply and reply.strip():
+                _record_history(session_id, message, reply)
                 return reply
             print(f"[AI] Respuesta vacía de {model_name}, intentando fallback...")
         except Exception as e:

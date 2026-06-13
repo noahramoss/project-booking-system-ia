@@ -61,9 +61,27 @@ def get_vector_store():
     )
     return _vector_store
 
+# Etiquetas legibles para citar la fuente (nombre de fichero -> título humano).
+SOURCE_LABELS = {
+    "cancellation_policy.md": "Política de Cancelaciones",
+    "pet_policy.md": "Política de Mascotas",
+    "checkin_checkout_rules.md": "Normas de Check-in / Check-out",
+    "restaurant_info.md": "Información del Restaurante",
+    "spa_gym_info.md": "Información de Spa y Gimnasio",
+}
+
+
 def consult_policies(query: str):
     store = get_vector_store()
     results = store.similarity_search(query, k=3)
     if not results:
         return "No se ha encontrado información en las políticas del hotel."
-    return "\n\n".join([doc.page_content for doc in results])
+
+    # Devolvemos cada fragmento etiquetado con su fuente real, para que el
+    # agente pueda citarla de forma fiable (no inventada).
+    fragments = []
+    for doc in results:
+        filename = os.path.basename(doc.metadata.get("source", ""))
+        label = SOURCE_LABELS.get(filename, filename or "Documento de políticas")
+        fragments.append(f"[Fuente: {label}]\n{doc.page_content}")
+    return "\n\n".join(fragments)
