@@ -1,168 +1,193 @@
-# 🏨 Booking System — API REST
+# 🏨 BookingSys — Plataforma de Reservas Hoteleras con IA
 
-Sistema de reservas hoteleras desarrollado con Node.js, Express y PostgreSQL. Permite gestionar usuarios, hoteles, habitaciones y reservas con autenticación JWT y control de acceso basado en roles.
+Aplicación **fullstack** de reservas hoteleras con un **asistente virtual de IA** como protagonista. Combina una API REST segura (Node + Express + PostgreSQL), un cliente web en React, un microservicio de Inteligencia Artificial (Python + LangGraph + RAG) y automatización de procesos con N8N.
+
+El usuario puede buscar hoteles, gestionar sus reservas y **conversar con un agente de IA** que responde dudas sobre políticas del hotel (citando sus fuentes), consulta disponibilidad real y revisa sus reservas — todo en lenguaje natural.
 
 ## El Equipo
 
-Soy **Noah Ramos González**, Ingeniero Informático y estudiante del Bootcamp de Desarrollo Web Full-Stack. Este proyecto representa la culminación del módulo de Backend, poniendo en práctica los conocimientos adquiridos sobre APIs REST, bases de datos relacionales y seguridad.
-
-## Tiempo de Desarrollo
-
-El proyecto se ha desarrollado en un tiempo estimado de **43 horas**:
-
-- Lunes a Viernes: 09:00 a 18:00 (con 1 hora de descanso) -> 40 horas.
-- Sábado: 10:00 a 13:00 -> 3 horas.
-
-## Resultado
-
-El resultado es una **API REST completamente funcional y segura** que sirve como motor para una plataforma de reservas hoteleras. Cumple con todos los requisitos obligatorios del proyecto Midterm, incluyendo un CRUD completo de 5 recursos, autenticación basada en JWT, autorización por roles (USER, MANAGER, ADMIN), validación robusta de datos de entrada y cobertura de tests de integración.
-
-## 🖥️ Interfaz de Usuario (Frontend)
-
-Como extra para facilitar la evaluación de la API y demostrar habilidades _Full-Stack_, se ha desarrollado un cliente web interactivo en la carpeta `/frontend` utilizando **React 18** y **Vite**. Esta interfaz consume directamente la API e implementa el flujo completo de autenticación, control de accesos y reservas según el rol del usuario.
-
-👉 [Ver documentación detallada del frontend](./frontend/README.md)
+Soy **Noah Ramos González**, Ingeniero Informático y estudiante del Bootcamp de Desarrollo Web Full-Stack. Este proyecto es la **evolución final** del sistema de reservas del módulo de Backend, transformado en una aplicación fullstack moderna con IA integrada, automatización y despliegue en la nube.
 
 ## 🚀 Despliegue en Producción
 
-La API se encuentra desplegada y accesible públicamente en Render:
-**URL Base:** `https://project-booking-system.onrender.com`
+| Servicio | URL |
+| --- | --- |
+| **Frontend** (Netlify) | https://booking-system-ia.netlify.app |
+| **Backend API** (Render) | https://project-booking-system-ia.onrender.com |
+| **Documentación Swagger** | https://project-booking-system-ia.onrender.com/api/docs |
+| **Microservicio IA** (Render) | https://ia-stx4.onrender.com |
 
-_Nota: Al estar alojada en el plan gratuito de Render, la primera petición después de un tiempo de inactividad puede tardar unos segundos en responder mientras el servidor se reactiva._
+> _Nota: backend e IA están en el plan gratuito de Render, que duerme los servicios tras inactividad. La primera petición tras un rato puede tardar ~60s en "despertar" el servicio._
 
-## Tecnologías utilizadas
+## ✨ Características principales
 
-| Tecnología             | Uso                             |
-| ---------------------- | ------------------------------- |
-| **Express.js**         | Framework HTTP para la API REST |
-| **PostgreSQL**         | Base de datos relacional        |
-| **Prisma**             | ORM para el acceso a datos      |
-| **JWT**                | Autenticación basada en tokens  |
-| **bcryptjs**           | Hashing seguro de contraseñas   |
-| **Zod**                | Validación de datos de entrada  |
-| **Morgan**             | Logger de peticiones HTTP       |
-| **CORS**               | Control de orígenes permitidos  |
-| **Vitest + Supertest** | Tests de integración            |
+- 🔐 **Autenticación JWT** y control de acceso por roles (USER, MANAGER, ADMIN).
+- 🏨 **CRUD completo** de Hoteles, Habitaciones y Reservas con reglas de negocio (anti-overbooking, cálculo de precios, soft delete).
+- 🤖 **Asistente de IA** (agente LangGraph) con 3 herramientas: disponibilidad, mis reservas y consulta de políticas (RAG).
+- 📚 **RAG** sobre 5 documentos de políticas del hotel, **citando la fuente** en cada respuesta.
+- 🧠 **Memoria conversacional** que persiste entre turnos + historial de chat recuperable.
+- ⚙️ **Automatización N8N**: emails transaccionales (bienvenida al registrarse, confirmación al reservar) con lógica condicional.
+- 🎨 **Frontend React** responsive (mobile-first), con modo oscuro, rutas protegidas por rol y dashboards de Admin/Manager.
+- 📖 **Documentación** con Swagger, colección Postman y este README.
 
-## Instalación
+## 🏗️ Arquitectura
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                  FRONTEND — React (Netlify)                  │
+│   Auth Context · React Router · ChatWidget · Dashboards     │
+└───────────────────────────┬─────────────────────────────────┘
+                            │ HTTPS (JWT)
+┌───────────────────────────▼─────────────────────────────────┐
+│             BACKEND — Node + Express (Render)               │
+│   /auth /user /hotel /room /booking   +   /chat (gateway)   │
+│   Helmet · Rate-limit · CORS · Zod · JWT · Error handler    │
+└───────┬───────────────────────┬─────────────────────┬───────┘
+        │ Prisma                │ proxy /chat         │ webhook
+        ▼                       ▼                     ▼
+┌──────────────┐   ┌────────────────────────┐   ┌──────────────┐
+│  PostgreSQL  │   │  MICROSERVICIO IA       │   │     N8N      │
+│  (Supabase)  │   │  Python · FastAPI       │   │   (Cloud)    │
+│              │   │  LangGraph Agent        │   │  Switch +    │
+│              │◄──│  Tools → llama al backend│   │  Email       │
+│              │   │  RAG → ChromaDB         │   │  (Mailtrap)  │
+└──────────────┘   └────────────────────────┘   └──────────────┘
+```
+
+El backend actúa como **gateway seguro**: el frontend nunca habla directamente con la IA. Cuando el cliente envía `POST /api/chat`, el backend valida la sesión y reenvía la petición (con el token) al microservicio de Python. El agente, a su vez, usa el propio backend como herramienta para consultar disponibilidad y reservas en tiempo real.
+
+## 🛠️ Tecnologías utilizadas
+
+| Capa | Tecnologías |
+| --- | --- |
+| **Backend** | Node.js, Express, Prisma ORM, PostgreSQL, JWT, bcryptjs, Zod, Helmet, express-rate-limit, Morgan |
+| **Frontend** | React 19, Vite, React Router v7, Context API, CSS Modules, react-markdown |
+| **Inteligencia Artificial** | Python, FastAPI, LangChain, **LangGraph**, **Groq** (Llama gpt-oss-120b / qwen3-32b), **ChromaDB**, fastembed (embeddings ONNX) |
+| **Automatización** | **N8N** (webhooks + nodo Switch + email SMTP) |
+| **Documentación / Testing** | Swagger (OpenAPI), Postman, Vitest, Supertest |
+| **Despliegue** | Render (backend + IA), Netlify (frontend), Supabase (PostgreSQL), n8n Cloud |
+
+## 🤖 Inteligencia Artificial
+
+El corazón del proyecto es un **agente conversacional** construido con **LangGraph** que orquesta un grafo de decisión (nodo `agent` ↔ nodo `action`/tools) con memoria persistente (`MemorySaver`).
+
+- **Modelo:** `openai/gpt-oss-120b` como primario y `qwen/qwen3-32b` como fallback, ambos servidos gratuitamente por **Groq** con la misma API key. Hay un `recursion_limit` que evita que el agente se quede en bucle.
+- **Herramientas (tools):**
+  1. `check_availability_tool` — consulta hoteles/disponibilidad llamando al backend.
+  2. `get_my_bookings_tool` — lee las reservas del usuario autenticado (usando su JWT).
+  3. `consult_policies_tool` — **RAG** sobre los documentos de políticas.
+- **RAG:** los 5 documentos de `src/docs/` (cancelaciones, mascotas, check-in/out, restaurante, spa/gimnasio) se indexan en **ChromaDB** con embeddings `all-MiniLM-L6-v2` vía **fastembed** (ONNX, sin PyTorch, para caber en hosting gratuito). Cada respuesta **cita la fuente real** del documento (`[Fuente: Política de Mascotas]`).
+- **Memoria:** la conversación persiste entre turnos por `session_id`, y es recuperable vía `GET /api/chat/history/{id}`.
+
+### Endpoints de IA — `/api/chat`
+
+| Método | Ruta | Descripción | Auth |
+| --- | --- | --- | --- |
+| `POST` | `/api/chat` | Enviar un mensaje al asistente | Opcional |
+| `GET` | `/api/chat/history/:sessionId` | Recuperar el historial de una sesión | No |
+
+## ⚙️ Automatización N8N
+
+Un workflow en **n8n Cloud** escucha un webhook al que el backend envía eventos (_fire-and-forget_, sin bloquear la petición del usuario):
+
+- Un nodo **Switch** (lógica condicional) enruta según el tipo de evento:
+  - `USER_REGISTERED` → email de **bienvenida**.
+  - `BOOKING_CREATED` → email de **confirmación de reserva** (con hotel, fechas y precio).
+- Los emails se envían por SMTP (Mailtrap en pruebas).
+- El workflow está exportado como JSON en [`n8n-workflows/`](./n8n-workflows/).
+
+## 📦 Instalación y ejecución local
 
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/noahramoss/project-booking-system.git
-cd project-booking-system
+git clone https://github.com/noahramoss/project-booking-system-ia.git
+cd project-booking-system-ia
 ```
 
 ### 2. Instalar dependencias
 
 ```bash
-npm install
+npm install                      # backend
+npm install --prefix frontend    # frontend
+```
+
+```bash
+# Microservicio de IA (Python)
+cd ai_service
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+cd ..
 ```
 
 ### 3. Configurar variables de entorno
 
-Copia el archivo de ejemplo y edítalo con tus credenciales:
-
 ```bash
-cp .env.example .env
+cp .env.example .env                  # backend (raíz)
+cp frontend/.env.example frontend/.env
+cp ai_service/.env.example ai_service/.env
 ```
 
-Edita `.env` con tu configuración:
+Edita cada `.env` con tus credenciales (ver [Variables de entorno](#-variables-de-entorno)).
+
+### 4. Base de datos: migraciones y datos de prueba
+
+```bash
+npx prisma migrate deploy   # crea las tablas
+npx prisma db seed          # datos de ejemplo
+```
+
+### 5. Arrancar todo
+
+```bash
+npm run dev    # backend (3000) + frontend (5173) + IA (8000) a la vez
+```
+
+> El script usa `concurrently`. El frontend estará en `http://localhost:5173`.
+
+#### Usuarios de prueba (seed)
+
+| Rol | Email | Contraseña |
+| --- | --- | --- |
+| ADMIN | admin@bookingsystem.com | Admin123! |
+| MANAGER | carlos@bookingsystem.com | Manager123! |
+| MANAGER | maria@bookingsystem.com | Manager123! |
+| USER | juan@email.com | User123! |
+| USER | ana@email.com | User123! |
+
+## 🔑 Variables de entorno
+
+**Backend (`.env`)**
 
 ```env
 PORT=3000
-DATABASE_URL="postgresql://usuario:contraseña@localhost:5432/booking_system?schema=public"
-JWT_SECRET="tu_secreto_jwt_seguro"
+DATABASE_URL="postgresql://usuario:contraseña@host:5432/db"
+JWT_SECRET="tu_secreto_jwt"
+N8N_WEBHOOK_URL="https://TU-SUBDOMINIO.app.n8n.cloud/webhook/booking-system-events"
+AI_SERVICE_URL="http://localhost:8000"      # URL del microservicio de IA
+FRONTEND_URL="http://localhost:5173"         # origen permitido por CORS
 ```
 
-### 4. Crear la base de datos y ejecutar migraciones
+**Frontend (`frontend/.env`)**
 
-```bash
-npx prisma migrate dev
+```env
+VITE_API_URL="http://localhost:3000/api"
 ```
 
-### 5. (Opcional) Poblar la base de datos con datos de prueba
+**IA (`ai_service/.env`)**
 
-```bash
-npx prisma db seed
+```env
+GROQ_API_KEY="tu_clave_de_groq"
+NODE_API_URL="http://localhost:3000/api"     # backend al que llaman las tools
 ```
 
-Esto creará usuarios de ejemplo con las siguientes credenciales:
+## 📚 Documentación de la API
 
-| Rol     | Email                    | Contraseña  |
-| ------- | ------------------------ | ----------- |
-| ADMIN   | admin@bookingsystem.com  | Admin123!   |
-| MANAGER | carlos@bookingsystem.com | Manager123! |
-| MANAGER | maria@bookingsystem.com  | Manager123! |
-| USER    | juan@email.com           | User123!    |
-| USER    | ana@email.com            | User123!    |
+- **Swagger / OpenAPI** interactivo: [`/api/docs`](https://project-booking-system-ia.onrender.com/api/docs) — incluye un botón _Authorize_ para probar endpoints protegidos con tu JWT.
+- **Postman:** colección en [`postman/`](./postman/).
 
-### 6. Arrancar el servidor
-
-```bash
-npm run dev
-```
-
-El servidor estará disponible en `http://localhost:3000`.
-
-## Tests
-
-Ejecutar todos los tests de integración:
-
-```bash
-npm test
-```
-
-## Estructura del proyecto
-
-```
-project-booking-system/
-├── prisma/
-│   ├── migrations/         # Migraciones de la base de datos
-│   ├── schema.prisma       # Modelo de datos
-│   └── seed.js             # Datos de prueba
-├── src/
-│   ├── auth/               # Autenticación (register, login)
-│   │   ├── auth.controller.js
-│   │   ├── auth.routes.js
-│   │   └── auth.schema.js
-│   ├── user/               # Gestión de usuarios
-│   │   ├── user.controller.js
-│   │   ├── user.routes.js
-│   │   └── user.schema.js
-│   ├── hotel/              # Gestión de hoteles
-│   │   ├── hotel.controller.js
-│   │   ├── hotel.routes.js
-│   │   └── hotel.schema.js
-│   ├── room/               # Gestión de habitaciones
-│   │   ├── room.controller.js
-│   │   ├── room.routes.js
-│   │   └── room.schema.js
-│   ├── booking/            # Gestión de reservas
-│   │   ├── booking.controller.js
-│   │   ├── booking.routes.js
-│   │   └── booking.schema.js
-│   ├── middleware/         # Middlewares
-│   │   ├── auth.middleware.js
-│   │   ├── validate.middleware.js
-│   │   └── errorHandler.js
-│   ├── config/
-│   │   └── prisma.js       # Cliente Prisma
-│   └── utils/
-│       └── AppError.js     # Clase de errores personalizados
-├── tests/                  # Tests de integración
-│   ├── setup.js
-│   ├── auth.test.js
-│   ├── hotel.test.js
-│   ├── room.test.js
-│   └── booking.test.js
-├── postman/                # Colección de Postman
-├── app.js                  # Configuración de Express
-├── server.js               # Punto de entrada
-└── vitest.config.js        # Configuración de tests
-```
-
-## Modelo de datos
+## 🗄️ Modelo de datos
 
 ```mermaid
 erDiagram
@@ -176,34 +201,30 @@ erDiagram
         String name
         String email UK
         String passwordHash
+        String phone
         Role role
-        DateTime createdAt
-        DateTime updatedAt
     }
-
     Hotel {
         String id PK
         String name UK
         String description
+        String[] imageUrls
         String city
         String country
         Int stars
+        Boolean isActive
         String managerId FK
-        DateTime createdAt
-        DateTime updatedAt
     }
-
     Room {
         String id PK
         Int number
         RoomType type
         Int capacity
         Decimal price
+        String[] amenities
+        Boolean isActive
         String hotelId FK
-        DateTime createdAt
-        DateTime updatedAt
     }
-
     Booking {
         String id PK
         String userId FK
@@ -212,104 +233,74 @@ erDiagram
         DateTime checkOut
         BookingStatus status
         Decimal totalPrice
-        DateTime createdAt
-        DateTime updatedAt
     }
 ```
 
-## Roles y permisos
+## 👥 Roles y permisos
 
-| Acción                             | USER                | MANAGER                           | ADMIN      |
-| ---------------------------------- | ------------------- | --------------------------------- | ---------- |
-| Registrarse / Login                | ✅                  | ✅                                | ✅         |
-| Ver su propio perfil               | ✅                  | ✅                                | ✅         |
-| Editar su propio perfil            | ✅                  | ✅                                | ✅         |
-| Eliminar su propia cuenta          | ✅                  | ✅                                | ❌         |
-| Ver lista de usuarios              | ❌                  | ✅ (solo clientes de sus hoteles) | ✅ (todos) |
-| Eliminar otro usuario              | ❌                  | ❌                                | ✅         |
-| Ver hoteles                        | ✅                  | ✅                                | ✅         |
-| Crear/editar/eliminar hoteles      | ❌                  | ✅ (solo los suyos)               | ✅         |
-| Ver habitaciones                   | ✅                  | ✅                                | ✅         |
-| Crear/editar/eliminar habitaciones | ❌                  | ✅ (solo de sus hoteles)          | ✅         |
-| Crear reservas                     | ✅                  | ✅                                | ✅         |
-| Ver reservas                       | ✅ (solo las suyas) | ✅ (solo de sus hoteles)          | ✅ (todas) |
-| Cancelar reservas                  | ✅ (solo las suyas) | ✅ (de sus hoteles)               | ✅         |
-| Eliminar reservas                  | ❌                  | ❌                                | ✅         |
+| Acción | USER | MANAGER | ADMIN |
+| --- | --- | --- | --- |
+| Registrarse / Login | ✅ | ✅ | ✅ |
+| Ver / editar su perfil | ✅ | ✅ | ✅ |
+| Ver lista de usuarios | ❌ | ✅ (de sus hoteles) | ✅ (todos) |
+| Cambiar rol / eliminar usuario | ❌ | ❌ | ✅ |
+| Crear/editar/eliminar hoteles | ❌ | ✅ (los suyos) | ✅ |
+| Crear/editar/eliminar habitaciones | ❌ | ✅ (de sus hoteles) | ✅ |
+| Crear reservas | ✅ | ✅ | ✅ |
+| Ver reservas | ✅ (las suyas) | ✅ (de sus hoteles) | ✅ (todas) |
+| Cancelar reservas | ✅ (las suyas) | ✅ (de sus hoteles) | ✅ |
+| Usar el asistente de IA | ✅ | ✅ | ✅ |
 
-## Endpoints de la API
+## 🔌 Endpoints de la API
 
 ### Autenticación — `/api/auth`
-
-| Método | Ruta                 | Descripción             | Auth |
-| ------ | -------------------- | ----------------------- | ---- |
-| `POST` | `/api/auth/register` | Registrar nuevo usuario | No   |
-| `POST` | `/api/auth/login`    | Iniciar sesión          | No   |
+| Método | Ruta | Descripción | Auth |
+| --- | --- | --- | --- |
+| `POST` | `/api/auth/register` | Registrar usuario | No |
+| `POST` | `/api/auth/login` | Iniciar sesión (devuelve JWT) | No |
 
 ### Usuarios — `/api/user`
+| Método | Ruta | Descripción | Auth |
+| --- | --- | --- | --- |
+| `GET` `PATCH` `DELETE` | `/api/user/me` | Mi perfil | Token |
+| `GET` | `/api/user` · `/api/user/:id` | Listar / ver usuario | MANAGER / ADMIN |
+| `PATCH` | `/api/user/:id/role` | Cambiar rol | ADMIN |
+| `DELETE` | `/api/user/:id` | Eliminar usuario | ADMIN |
 
-| Método   | Ruta            | Descripción          | Auth            |
-| -------- | --------------- | -------------------- | --------------- |
-| `GET`    | `/api/user/me`  | Ver mi perfil        | Token           |
-| `PATCH`  | `/api/user/me`  | Actualizar mi perfil | Token           |
-| `DELETE` | `/api/user/me`  | Eliminar mi cuenta   | Token           |
-| `GET`    | `/api/user`     | Listar usuarios      | MANAGER / ADMIN |
-| `GET`    | `/api/user/:id` | Ver un usuario       | MANAGER / ADMIN |
-| `DELETE` | `/api/user/:id` | Eliminar un usuario  | ADMIN           |
-
-### Hoteles — `/api/hotel`
-
-| Método   | Ruta             | Descripción                                          | Auth            |
-| -------- | ---------------- | ---------------------------------------------------- | --------------- |
-| `GET`    | `/api/hotel`     | Listar hoteles (filtros: name, city, country, stars) | No              |
-| `POST`   | `/api/hotel`     | Crear hotel                                          | MANAGER         |
-| `GET`    | `/api/hotel/:id` | Ver un hotel                                         | No              |
-| `PATCH`  | `/api/hotel/:id` | Actualizar hotel                                     | MANAGER / ADMIN |
-| `DELETE` | `/api/hotel/:id` | Eliminar hotel                                       | MANAGER / ADMIN |
-
-### Habitaciones — `/api/room`
-
-| Método   | Ruta            | Descripción           | Auth            |
-| -------- | --------------- | --------------------- | --------------- |
-| `GET`    | `/api/room`     | Listar habitaciones   | No              |
-| `POST`   | `/api/room`     | Crear habitación      | MANAGER / ADMIN |
-| `GET`    | `/api/room/:id` | Ver una habitación    | No              |
-| `PATCH`  | `/api/room/:id` | Actualizar habitación | MANAGER / ADMIN |
-| `DELETE` | `/api/room/:id` | Eliminar habitación   | MANAGER / ADMIN |
+### Hoteles `/api/hotel` · Habitaciones `/api/room`
+CRUD completo. `GET` públicos (con filtros); crear/editar/eliminar para MANAGER/ADMIN.
 
 ### Reservas — `/api/booking`
+CRUD con control por rol. `DELETE` solo ADMIN.
 
-| Método   | Ruta               | Descripción                      | Auth  |
-| -------- | ------------------ | -------------------------------- | ----- |
-| `GET`    | `/api/booking`     | Listar reservas (filtro: status) | Token |
-| `POST`   | `/api/booking`     | Crear reserva                    | Token |
-| `GET`    | `/api/booking/:id` | Ver una reserva                  | Token |
-| `PATCH`  | `/api/booking/:id` | Actualizar estado de reserva     | Token |
-| `DELETE` | `/api/booking/:id` | Eliminar reserva                 | ADMIN |
+### IA — `/api/chat`
+`POST /api/chat` y `GET /api/chat/history/:sessionId` (ver sección [Inteligencia Artificial](#-inteligencia-artificial)).
 
-## Reglas de negocio
+> La referencia completa con cuerpos de petición y respuestas está en **Swagger** (`/api/docs`).
 
-- **Disponibilidad**: No se pueden crear reservas en fechas que se solapen con una reserva activa (no cancelada) de la misma habitación.
-- **Cálculo de precio**: El precio total se calcula automáticamente como `número de noches × precio por noche`.
-- **Cancelación**: Los usuarios solo pueden cancelar sus propias reservas. No se puede modificar una reserva ya cancelada.
-- **Eliminación en cascada**: Al eliminar un usuario, se eliminan automáticamente sus hoteles, habitaciones y reservas asociadas.
-- **Protección de admin**: Un administrador no puede eliminarse a sí mismo.
+## 📐 Reglas de negocio
 
-## Puntos de Conflicto y Soluciones
+- **Anti-overbooking:** no se permiten reservas que solapen con otra activa de la misma habitación (`nuevoCheckIn < viejoCheckOut AND nuevoCheckOut > viejoCheckIn`).
+- **Cálculo de precio:** `nº de noches × precio/noche`, automático.
+- **Cancelación:** solo el dueño (o MANAGER/ADMIN) puede cancelar; una reserva cancelada no se modifica.
+- **Soft delete:** hoteles y habitaciones se desactivan (`isActive`) en lugar de borrarse.
+- **Cascade:** al eliminar un usuario se limpian sus hoteles, habitaciones y reservas.
+- **Protección de admin:** un administrador no puede eliminarse ni cambiar su propio rol.
 
-Durante el desarrollo, nos encontramos con varios retos técnicos interesantes:
+## 🧩 Retos técnicos y soluciones
 
-1. **Eliminación en cascada de usuarios:**
-   - _Problema:_ Al intentar que un usuario eliminara su propia cuenta (`DELETE /api/user/me`), PostgreSQL arrojaba errores de restricción de clave foránea porque el usuario tenía reservas y hoteles asociados.
-   - _Solución:_ Modificamos el esquema de Prisma (`schema.prisma`) añadiendo explícitamente `onDelete: Cascade` en las relaciones clave (ej. de Hotel a User, de Room a Hotel, y de Booking a User/Room).
+1. **El agente entraba en bucle infinito.** El modelo de fallback débil reemitía llamadas a herramientas sin terminar, colgando las peticiones (500). _Solución:_ cambiar a modelos capaces (`gpt-oss-120b` + `qwen3-32b`) y añadir un `recursion_limit` con fallback resiliente.
+2. **Embeddings demasiado pesados para hosting gratuito.** `sentence-transformers` arrastra PyTorch (cientos de MB) y reventaba la RAM del plan free. _Solución:_ migrar a **fastembed** (mismo modelo vía ONNX, ~100 MB).
+3. **Citas de RAG poco fiables.** La IA debía citar fuentes pero no tenía los metadatos. _Solución:_ devolver el nombre real del documento por fragmento (`[Fuente: ...]`).
+4. **URLs acopladas al desplegar.** El proxy a la IA y las tools apuntaban a `localhost`. _Solución:_ parametrizar todas las URLs por variables de entorno (`AI_SERVICE_URL`, `NODE_API_URL`, `VITE_API_URL`, `FRONTEND_URL`).
+5. **Overbooking y borrado en cascada** (heredados del backend original): resueltos con lógica de solapamiento de fechas y `onDelete: Cascade` en Prisma.
 
-2. **Aplanamiento de las respuestas JSON:**
-   - _Problema:_ Prisma por defecto anida los resultados de las relaciones (ej. `booking.room.hotel.name`), lo cual hacía que el JSON de respuesta fuera profundo e incómodo para un frontend.
-   - _Solución:_ Implementamos una lógica de mapeo en los controladores para "aplanar" (`flatten`) las respuestas, extrayendo campos como `hotelName` o `managerName` al primer nivel del objeto devuelto.
+## 🧪 Tests
 
-3. **Validación de fechas solapadas y lógicas cruzadas en Zod:**
-   - _Problema:_ Necesitábamos asegurar en el `schema` que la fecha de `checkOut` fuera estrictamente posterior a la de `checkIn`, algo que la validación básica de tipos no cubre.
-   - _Solución:_ Usamos el método `.refine()` de Zod en el esquema de reservas para añadir esta validación cruzada antes de que la petición siquiera llegue al controlador.
+```bash
+npm test    # tests de integración y de servicios con Vitest + Supertest
+```
 
-4. **Tests que limpiaban la base de datos concurrentemente:**
-   - _Problema:_ Al añadir Vitest, los tests fallaban aleatoriamente porque se ejecutaban en paralelo y el `cleanDatabase()` de un archivo borraba los datos que otro archivo estaba usando.
-   - _Solución:_ Configuramos `vitest.config.js` con `fileParallelism: false` para forzar la ejecución secuencial de los archivos de prueba.
+## 🖥️ Frontend
+
+Cliente web en **React 19 + Vite** que consume la API e integra el chat de IA. Documentación detallada en [`frontend/README.md`](./frontend/README.md).
