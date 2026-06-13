@@ -17,17 +17,31 @@ const app = express();
 app.use(helmet());
 
 // 2. Configuración CORS segura
-app.use(cors({
-  origin: process.env.NODE_ENV === "production" ? "https://midominio.com" : ["http://localhost:5173", "http://127.0.0.1:5173"],
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-  credentials: true
-}));
+// Orígenes de desarrollo + el dominio del frontend desplegado (FRONTEND_URL)
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "http://127.0.0.1:5173",
+];
+if (process.env.FRONTEND_URL) {
+  allowedOrigins.push(process.env.FRONTEND_URL);
+}
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    credentials: true,
+  }),
+);
 
 // 3. Limitación de peticiones (Rate Limiting) para prevenir fuerza bruta/DDoS
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 100, // Límite de 100 peticiones por IP
-  message: "Demasiadas peticiones desde esta IP, por favor intenta de nuevo en 15 minutos.",
+  max: 500, // Límite de 500 peticiones por IP para evitar bloqueos rápidos en desarrollo
+  message: {
+    message:
+      "Demasiadas peticiones desde esta IP, por favor intenta de nuevo en 15 minutos.",
+  },
 });
 // Aplicamos el limitador a todas las rutas que comiencen por /api
 app.use("/api", limiter);

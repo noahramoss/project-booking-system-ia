@@ -11,8 +11,9 @@ export const handleChat = async (req, res, next) => {
     const session = sessionId || req.user?.id || "anonymous_" + Math.random().toString(36).substring(7);
     const token = req.headers.authorization || "";
     
-    // Conectar con el microservicio de Python
-    const response = await fetch("http://localhost:8000/chat", {
+    // Conectar con el microservicio de Python (URL configurable para producción)
+    const aiServiceUrl = process.env.AI_SERVICE_URL || "http://localhost:8000";
+    const response = await fetch(`${aiServiceUrl}/chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

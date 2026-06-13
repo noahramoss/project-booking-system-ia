@@ -5,7 +5,7 @@ from datetime import datetime
 
 load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'))
 
-NODE_API_URL = "http://localhost:3000/api"
+NODE_API_URL = os.getenv("NODE_API_URL", "http://localhost:3000/api")
 
 def get_availability(city: str = None, check_in: str = None, check_out: str = None, capacity: int = None):
     params = {}
@@ -22,7 +22,10 @@ def get_availability(city: str = None, check_in: str = None, check_out: str = No
         
         results = []
         for h in data['hotels']:
-            results.append(f"Hotel: {h['name']}, Ciudad: {h['city']}, Estrellas: {h['stars']}, Precio desde: {h['startingPrice']}")
+            desc = h.get('description', '')
+            desc_short = desc[:100] + '...' if len(desc) > 100 else desc
+            price = f"desde {h['startingPrice']}€" if h.get('startingPrice') is not None else "sin habitaciones disponibles actualmente"
+            results.append(f"Hotel: {h['name']}, Ubicación: {h['city']}, {h['country']}, Estrellas: {h['stars']}⭐, Precio: {price}. Descripción: {desc_short}")
         return "\n".join(results)
     except Exception as e:
         return f"Error al buscar disponibilidad: {str(e)}"
@@ -53,9 +56,10 @@ def get_my_bookings(token: str):
                 checkout_str = b['checkOut']
                 
             results.append(
-                f"- Hotel {b['hotelName']}, Habitación {b.get('roomType', '')}\n"
+                f"- Reserva en Hotel {b.get('hotelName', 'Desconocido')} (Habitación {b.get('roomType', '')} #{b.get('roomNumber', '')})\n"
+                f"  Estado: {b.get('status', 'PENDING')}\n"
                 f"  Fechas: {checkin_str} al {checkout_str}\n"
-                f"  Precio total: {b['totalPrice']}€\n"
+                f"  Precio total: {b.get('totalPrice', 0)}€\n"
             )
         return "\n".join(results)
     except Exception as e:
