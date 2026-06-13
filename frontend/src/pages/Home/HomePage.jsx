@@ -27,16 +27,9 @@ const HomePage = () => {
     sortOrder: 'desc' 
   });
   
-  // States para MANAGER / ADMIN
-  const [stats, setStats] = useState({ pending: 0, confirmed: 0, cancelled: 0 });
-
   useEffect(() => {
-    if (user.role === 'USER') {
-      loadUserHotels();
-    } else {
-      loadManagerAdminHotelsAndStats();
-    }
-  }, [user.role]);
+    loadUserHotels();
+  }, []);
 
   const loadUserHotels = async () => {
     try {
@@ -58,46 +51,14 @@ const HomePage = () => {
     }
   };
 
-  const loadManagerAdminHotelsAndStats = async () => {
-    try {
-      // 1. Cargar hoteles
-      const hotelsData = await fetchApi('/hotel');
-      
-      // Filtramos en el frontend si es MANAGER (el admin ve todos)
-      let displayHotels = hotelsData.hotels || [];
-      if (user.role === 'MANAGER') {
-        displayHotels = displayHotels.filter(h => h.managerEmail === user.email);
-      }
-      setHotels(displayHotels);
-
-      // 2. Cargar reservas para las estadísticas
-      const bookingsData = await fetchApi('/booking');
-      const bookings = bookingsData.bookings || [];
-      
-      const newStats = { pending: 0, confirmed: 0, cancelled: 0 };
-      bookings.forEach(b => {
-        if (b.status === 'PENDING') newStats.pending++;
-        if (b.status === 'CONFIRMED') newStats.confirmed++;
-        if (b.status === 'CANCELLED') newStats.cancelled++;
-      });
-      setStats(newStats);
-      
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   const handleFilterSubmit = (e) => {
     e.preventDefault();
     loadUserHotels();
   };
 
-  // --- RENDERIZADO POR ROL ---
-
   if (loading) return <Loader />;
 
-  if (user.role === 'USER') {
-    return (
+  return (
       <div className={styles.container}>
         <div className={styles.header}>
           <h1>Encuentra tu próximo hotel</h1>
@@ -176,46 +137,6 @@ const HomePage = () => {
           )}
         </div>
       </div>
-    );
-  }
-
-  // Vista MANAGER y ADMIN
-  return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h1>Panel de Control ({user.role})</h1>
-        <p>Bienvenido de nuevo, {user.name}</p>
-      </div>
-
-      <div className={styles.statsGrid}>
-        <div className={styles.statCard}>
-          <h3>Pendientes</h3>
-          <p className={styles.statNumber} style={{ color: 'var(--status-pending)' }}>{stats.pending}</p>
-        </div>
-        <div className={styles.statCard}>
-          <h3>Confirmadas</h3>
-          <p className={styles.statNumber} style={{ color: 'var(--status-confirmed)' }}>{stats.confirmed}</p>
-        </div>
-        <div className={styles.statCard}>
-          <h3>Canceladas</h3>
-          <p className={styles.statNumber} style={{ color: 'var(--status-cancelled)' }}>{stats.cancelled}</p>
-        </div>
-      </div>
-
-      <h2 className={styles.sectionTitle}>
-        {user.role === 'MANAGER' ? 'Mis Hoteles' : 'Todos los Hoteles'}
-      </h2>
-      
-      <div className={styles.grid}>
-        {hotels.length === 0 ? (
-          <p>No hay hoteles registrados.</p>
-        ) : (
-          hotels.map(hotel => (
-            <HotelCard key={hotel.id} hotel={hotel} />
-          ))
-        )}
-      </div>
-    </div>
   );
 };
 

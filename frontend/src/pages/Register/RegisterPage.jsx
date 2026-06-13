@@ -8,8 +8,7 @@ const RegisterPage = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    password: '',
-    role: 'USER'
+    password: ''
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -88,15 +87,6 @@ const RegisterPage = () => {
             </small>
           </div>
 
-          <div className={loginStyles.inputGroup}>
-            <label htmlFor="role">Rol</label>
-            <select id="role" value={formData.role} onChange={handleChange}>
-              <option value="USER">Usuario (Cliente)</option>
-              <option value="MANAGER">Gestor de Hoteles</option>
-              <option value="ADMIN">Administrador</option>
-            </select>
-          </div>
-          
           <button type="submit" className="btn-primary" disabled={loading}>
             {loading ? 'Cargando...' : 'Crear Cuenta'}
           </button>

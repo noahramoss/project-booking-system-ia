@@ -65,9 +65,6 @@
   font-size: 0.75rem;
   color: var(--primary-color);
   font-weight: 700;
-  background-color: #eff6ff;
-  padding: 0.1rem 0.5rem;
-  border-radius: var(--radius-sm);
 }
 
 .logoutBtn {

@@ -5,7 +5,7 @@
 }
 
 .hero {
-  background-color: var(--secondary-color);
+  background-color: #1e293b;
   color: white;
   padding: 3rem 1.5rem;
   border-radius: var(--radius-lg);

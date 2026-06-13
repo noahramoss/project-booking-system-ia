@@ -30,7 +30,15 @@ const LoginPage = () => {
       }
 
       login(data.user, data.token);
-      navigate('/');
+      
+      // Redirección basada en rol
+      if (data.user.role === 'ADMIN') {
+        navigate('/admin/dashboard');
+      } else if (data.user.role === 'MANAGER') {
+        navigate('/manager/dashboard');
+      } else {
+        navigate('/');
+      }
     } catch (err) {
       setError(err.message);
     } finally {

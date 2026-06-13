@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
@@ -15,17 +16,7 @@ const Navbar = () => {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  const [isDark, setIsDark] = useState(false);
-  
-  useEffect(() => {
-    const isDarkMode = document.documentElement.classList.contains('dark');
-    setIsDark(isDarkMode);
-  }, []);
-
-  const toggleTheme = () => {
-    document.documentElement.classList.toggle('dark');
-    setIsDark(!isDark);
-  };
+  const { isDarkMode, toggleTheme } = useTheme();
 
   return (
     <nav className={styles.navbar}>
@@ -56,7 +47,7 @@ const Navbar = () => {
               style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '1.2rem', padding: '0.5rem', color: 'var(--text-main)' }}
               title="Alternar Tema"
             >
-              {isDark ? '☀️' : '🌙'}
+              {isDarkMode ? '☀️' : '🌙'}
             </button>
           </li>
           
