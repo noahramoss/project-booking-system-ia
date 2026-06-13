@@ -54,6 +54,16 @@
   border-color: var(--primary-color);
 }
 
+.inputGroup input.invalid,
+.inputGroup select.invalid {
+  border-color: #ef4444;
+}
+
+.fieldError {
+  color: #ef4444;
+  font-size: 0.75rem;
+}
+
 .error {
   background-color: #fee2e2;
   color: #ef4444;
