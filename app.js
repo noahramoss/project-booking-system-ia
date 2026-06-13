@@ -10,6 +10,8 @@ import hotelRoutes from "./src/hotel/hotel.routes.js";
 import roomRoutes from "./src/room/room.routes.js";
 import bookingRoutes from "./src/booking/booking.routes.js";
 import chatRoutes from "./src/chat/chat.routes.js";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./src/config/swagger.js";
 
 const app = express();
 
@@ -59,6 +61,9 @@ app.use("/api/hotel", hotelRoutes);
 app.use("/api/room", roomRoutes);
 app.use("/api/booking", bookingRoutes);
 app.use("/api/chat", chatRoutes);
+
+// Documentación interactiva de la API (Swagger UI)
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, { customSiteTitle: "Booking System API — Docs" }));
 
 app.use(errorHandler); //Siempre debe ir el último
 
