@@ -231,6 +231,9 @@ export class HotelService {
       manager: {
         select: { name: true, email: true },
       },
+      _count: {
+        select: { rooms: { where: { isActive: true } } }
+      }
     };
   }
 

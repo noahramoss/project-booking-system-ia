@@ -174,7 +174,7 @@ export class BookingService {
       totalPrice: true,
       createdAt: true,
       user: { select: { name: true, email: true } },
-      room: { select: { number: true, type: true, hotel: { select: { name: true } } } },
+      room: { select: { number: true, type: true, hotel: { select: { name: true, manager: { select: { name: true, email: true } } } } } },
     };
   }
 
@@ -186,10 +186,9 @@ export class BookingService {
       userEmail: booking.user.email,
       roomNumber: booking.room.number,
       roomType: booking.room.type,
-      hotelName: booking.room.hotel?.name,
-      userId: undefined,
-      user: undefined,
-      room: undefined,
+      hotelName: booking.room?.hotel?.name,
+      managerName: booking.room?.hotel?.manager?.name,
+      managerEmail: booking.room?.hotel?.manager?.email,
     };
   }
 }
