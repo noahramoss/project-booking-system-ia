@@ -1,7 +1,7 @@
 import os
 from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from langchain_community.vectorstores import Chroma
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.embeddings import FastEmbedEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 DB_DIR = os.path.join(os.path.dirname(__file__), "chroma_db")
@@ -17,13 +17,37 @@ def get_vector_store():
         return _vector_store
         
     if _embeddings is None:
-        _embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+        # fastembed (ONNX): mismo modelo all-MiniLM pero sin PyTorch,
+        # bajo consumo de RAM para encajar en el free tier de Render.
+        _embeddings = FastEmbedEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     
-    if os.path.exists(DB_DIR) and len(os.listdir(DB_DIR)) > 0:
-        _vector_store = Chroma(persist_directory=DB_DIR, embedding_function=_embeddings)
-        return _vector_store
+    def is_db_outdated():
+        if not os.path.exists(DB_DIR):
+            return True
+        try:
+            db_mtime = os.path.getmtime(DB_DIR)
+            for root, _, files in os.walk(DOCS_DIR):
+                for file in files:
+                    if file.endswith(".md"):
+                        if os.path.getmtime(os.path.join(root, file)) > db_mtime:
+                            return True
+            return False
+        except:
+            return True
+
+    if not is_db_outdated():
+        try:
+            _vector_store = Chroma(persist_directory=DB_DIR, embedding_function=_embeddings)
+            return _vector_store
+        except Exception as e:
+            print(f"Error cargando DB, reconstruyendo... {e}")
+            pass
+            
+    # Inicializar si no existe o está desactualizado
+    import shutil
+    if os.path.exists(DB_DIR):
+        shutil.rmtree(DB_DIR)
         
-    # Inicializar si no existe
     loader = DirectoryLoader(DOCS_DIR, glob="**/*.md", loader_cls=TextLoader)
     documents = loader.load()
     

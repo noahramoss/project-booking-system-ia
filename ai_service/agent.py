@@ -33,11 +33,11 @@ def consult_policies_tool(query: str):
     """Útil para consultar las normas, políticas de mascotas, cancelaciones, spa, gimnasio o restaurantes del hotel. SIEMPRE usa esta herramienta si el usuario hace preguntas sobre normativas o información general."""
     return consult_policies(query)
 
-def create_agent():
+def create_agent(model_name="llama-3.3-70b-versatile"):
     llm = ChatGroq(
         api_key=os.getenv("GROQ_API_KEY"),
-        model="llama-3.1-8b-instant",
-        temperature=0
+        model=model_name,
+        temperature=0.3
     )
     
     tools = [check_availability_tool, get_my_bookings_tool, consult_policies_tool]
@@ -70,30 +70,59 @@ def create_agent():
     
     return workflow.compile(checkpointer=MemorySaver())
 
-agent_app = create_agent()
+# Modelos servidos por Groq (free tier, misma API key).
+# Primario: gpt-oss-120b (alta calidad, cita fuentes y cierra el ciclo de tools).
+# Fallback: qwen3-32b (cuota independiente; también maneja tools correctamente).
+# Se evita llama-3.1-8b-instant porque no termina el ciclo de tools (bucle infinito).
+PRIMARY_MODEL = "openai/gpt-oss-120b"
+FALLBACK_MODEL = "qwen/qwen3-32b"
+
+# Tope de pasos del grafo (agente<->tool). Evita cuelgues por bucles de tools:
+# en vez de quedarse colgado, lanza GraphRecursionError y caemos al fallback.
+RECURSION_LIMIT = 8
+
+agent_primary = create_agent(PRIMARY_MODEL)
+agent_fallback = create_agent(FALLBACK_MODEL)
 
 def get_agent_response(message: str, session_id: str, token: str):
     token_context.set(token)
     
-    system_prompt = """Eres el 'Virtual Concierge' de nuestra cadena de hoteles. Tu tono es elegante, educado, servicial y profesional.
+    system_prompt = """Eres el asistente virtual oficial de BookingSys, una plataforma integral de reservas hoteleras. Tu objetivo es ayudar a los clientes de forma amable, profesional y resolutiva.
 REGLAS ESTRICTAS:
-1. NORMAS Y POLÍTICAS: Si el usuario pregunta por mascotas, horarios, spa, gimnasio, restaurante o cancelaciones, TIENES que usar la herramienta 'consult_policies_tool'. NUNCA inventes políticas.
-2. DISPONIBILIDAD: Si preguntan por hoteles en una ciudad o para unas fechas, usa 'check_availability_tool'.
-3. RESERVAS: Si el usuario quiere saber el estado de sus reservas, usa 'get_my_bookings_tool'.
-4. CITA DE FUENTES: Siempre que uses información obtenida por 'consult_policies_tool', añade una nota indicando la fuente.
-5. PRIVACIDAD Y SEGURIDAD: Estás operando en un entorno seguro y autenticado. DEBES mostrar explícitamente los datos de las reservas del usuario si los pide (precios, fechas, hoteles). NO uses respuestas genéricas de privacidad para ocultar esta información, es el propio usuario quien la solicita.
+1. IDIOMA: Responde SIEMPRE en español, independientemente del idioma de la pregunta.
+2. USO DE HERRAMIENTAS: DEBES utilizar las herramientas disponibles siempre que sea necesario. No asumas ni inventes información.
+3. NORMAS Y POLÍTICAS: Si el usuario pregunta por mascotas, horarios, spa, gimnasio, restaurante o cancelaciones, USA 'consult_policies_tool'. No inventes políticas. Cita siempre la fuente.
+4. DISPONIBILIDAD: Para saber qué hoteles hay o si hay habitaciones libres, usa 'check_availability_tool'. Si la herramienta devuelve resultados, descríbelos de forma atractiva usando emojis (ej: 🏨, ⭐️, 💶). Si la herramienta dice que no hay resultados, indícalo educadamente.
+5. MIS RESERVAS: Si el usuario pregunta por "mis reservas", "mis viajes", "dónde voy a dormir", etc., usa 'get_my_bookings_tool'. Muestra siempre el estado (Confirmada, Pendiente, Cancelada), fechas, hotel y precio total.
+6. RESPUESTAS CONCRETAS: Sé conciso pero informativo. Utiliza viñetas para listar información si es apropiado.
+7. PRIVACIDAD: Estás operando en un entorno seguro. Puedes y debes mostrar los detalles de las reservas al usuario si las pide, usando la herramienta adecuada.
 """
     
-    config = {"configurable": {"thread_id": session_id}}
-    
-    # Check si es el primer mensaje de la sesión
-    state = agent_app.get_state(config)
-    if not state.values.get("messages"):
-        messages = [SystemMessage(content=system_prompt), HumanMessage(content=message)]
-    else:
-        messages = [HumanMessage(content=message)]
-        
-    result = agent_app.invoke({"messages": messages}, config)
-    
-    last_message = result["messages"][-1]
-    return last_message.content
+    # Se intenta con el modelo principal; ante cualquier fallo (rate limit, bucle
+    # de tools que agota la recursión, etc.) se pasa al fallback. Solo si ambos
+    # fallan se devuelve un mensaje amable, nunca un 500.
+    for agent_app, model_name in [(agent_primary, PRIMARY_MODEL), (agent_fallback, FALLBACK_MODEL)]:
+        try:
+            config = {
+                "configurable": {"thread_id": f"{session_id}_{model_name}"},
+                "recursion_limit": RECURSION_LIMIT,
+            }
+
+            state = agent_app.get_state(config)
+            if not state.values.get("messages"):
+                messages = [SystemMessage(content=system_prompt), HumanMessage(content=message)]
+            else:
+                messages = [HumanMessage(content=message)]
+
+            result = agent_app.invoke({"messages": messages}, config)
+
+            reply = result["messages"][-1].content
+            # Una respuesta vacía es tan inútil como un error: probamos el fallback.
+            if reply and reply.strip():
+                return reply
+            print(f"[AI] Respuesta vacía de {model_name}, intentando fallback...")
+        except Exception as e:
+            print(f"[AI] Error en {model_name} ({type(e).__name__}: {str(e)[:120]}), intentando fallback...")
+
+    return "Lo siento, el servicio de IA está teniendo problemas en este momento. Por favor, inténtalo de nuevo en unos instantes."
+
