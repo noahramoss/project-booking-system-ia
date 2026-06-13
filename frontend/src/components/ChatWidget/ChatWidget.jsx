@@ -17,10 +17,15 @@ const ChatWidget = () => {
   const { token } = useAuth();
   const messagesEndRef = useRef(null);
 
-  // Usamos un sessionId estático por carga de página para mantener el hilo
-  const [sessionId] = useState(
-    () => "session_" + Math.random().toString(36).substring(7),
-  );
+  // sessionId persistente (localStorage) para mantener el hilo entre recargas.
+  const [sessionId] = useState(() => {
+    let id = localStorage.getItem("chat_session_id");
+    if (!id) {
+      id = "session_" + Math.random().toString(36).substring(7);
+      localStorage.setItem("chat_session_id", id);
+    }
+    return id;
+  });
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -29,6 +34,28 @@ const ChatWidget = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Al montar, recuperamos el historial de la sesión (si existe en el servidor).
+  useEffect(() => {
+    const loadHistory = async () => {
+      try {
+        const res = await fetch(`${API_URL}/chat/history/${sessionId}`);
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.history && data.history.length > 0) {
+          setMessages(
+            data.history.map((m) => ({
+              text: m.content,
+              sender: m.role === "user" ? "user" : "bot",
+            })),
+          );
+        }
+      } catch {
+        // Silencioso: si falla, se mantiene el mensaje de bienvenida.
+      }
+    };
+    loadHistory();
+  }, [sessionId]);
 
   const handleSend = async (e) => {
     e.preventDefault();

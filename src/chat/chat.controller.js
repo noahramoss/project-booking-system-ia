@@ -38,7 +38,21 @@ export const handleChat = async (req, res, next) => {
 };
 
 export const getHistory = async (req, res, next) => {
-    // Para simplificar, delegamos la retención del historial al frontend temporalmente.
-    // Opcionalmente se puede guardar en una base de datos de chats aquí.
-    res.status(200).json({ history: [] });
+  try {
+    const { sessionId } = req.params;
+    const aiServiceUrl = process.env.AI_SERVICE_URL || "http://localhost:8000";
+
+    const response = await fetch(
+      `${aiServiceUrl}/history/${encodeURIComponent(sessionId)}`,
+    );
+
+    if (!response.ok) {
+      return res.status(200).json({ history: [] });
+    }
+
+    const data = await response.json();
+    res.status(200).json({ history: data.history || [] });
+  } catch (error) {
+    next(error);
+  }
 };

@@ -462,7 +462,30 @@ export const swaggerSpec = {
         tags: ["Chat"],
         summary: "Obtener el historial de una sesión de chat",
         parameters: [{ name: "sessionId", in: "path", required: true, schema: { type: "string" } }],
-        responses: { 200: { description: "Historial de la conversación" } },
+        responses: {
+          200: {
+            description: "Historial de la conversación",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    history: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        properties: {
+                          role: { type: "string", enum: ["user", "assistant"] },
+                          content: { type: "string" },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
       },
     },
   },
