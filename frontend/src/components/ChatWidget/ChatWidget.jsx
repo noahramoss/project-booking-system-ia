@@ -1,20 +1,26 @@
-import { useState, useRef, useEffect } from 'react';
-import { API_URL } from '../../config/api';
-import { useAuth } from '../../context/AuthContext';
-import './ChatWidget.css';
+import { useState, useRef, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
+import { API_URL } from "../../config/api";
+import { useAuth } from "../../context/AuthContext";
+import "./ChatWidget.css";
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { text: "Hola, soy el Virtual Concierge del Grand Hotel. ¿En qué puedo ayudarte hoy?", sender: 'bot' }
+    {
+      text: "👋 ¡Hola! Soy el asistente virtual de BookingSys.\n\nPuedo ayudarte con:\n🏨 Buscar hoteles disponibles\n📋 Consultar tus reservas\nℹ️ Políticas de hotel (mascotas, cancelaciones...)\n\n¿En qué puedo ayudarte hoy?",
+      sender: "bot",
+    },
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { token } = useAuth();
   const messagesEndRef = useRef(null);
-  
+
   // Usamos un sessionId estático por carga de página para mantener el hilo
-  const [sessionId] = useState(() => "session_" + Math.random().toString(36).substring(7));
+  const [sessionId] = useState(
+    () => "session_" + Math.random().toString(36).substring(7),
+  );
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -29,58 +35,94 @@ const ChatWidget = () => {
     if (!input.trim()) return;
 
     const userMsg = input.trim();
-    setMessages(prev => [...prev, { text: userMsg, sender: 'user' }]);
+    setMessages((prev) => [...prev, { text: userMsg, sender: "user" }]);
     setInput("");
     setIsLoading(true);
 
     try {
-      const headers = { 'Content-Type': 'application/json' };
+      const headers = { "Content-Type": "application/json" };
       if (token) {
-        headers['Authorization'] = `Bearer ${token}`;
+        headers["Authorization"] = `Bearer ${token}`;
       }
 
       const res = await fetch(`${API_URL}/chat`, {
-        method: 'POST',
+        method: "POST",
         headers,
-        body: JSON.stringify({ message: userMsg, sessionId })
+        body: JSON.stringify({ message: userMsg, sessionId }),
       });
 
       const data = await res.json();
       if (res.ok) {
-        setMessages(prev => [...prev, { text: data.reply, sender: 'bot' }]);
+        setMessages((prev) => [...prev, { text: data.reply, sender: "bot" }]);
       } else {
-        setMessages(prev => [...prev, { text: "Lo siento, ha ocurrido un error de conexión.", sender: 'bot', isError: true }]);
+        setMessages((prev) => [
+          ...prev,
+          {
+            text: "Lo siento, ha ocurrido un error de conexión.",
+            sender: "bot",
+            isError: true,
+          },
+        ]);
       }
     } catch (err) {
-      setMessages(prev => [...prev, { text: "Error de red al intentar contactar al Concierge.", sender: 'bot', isError: true }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          text: "Error de red al intentar contactar al Chatbot.",
+          sender: "bot",
+          isError: true,
+        },
+      ]);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className={`chat-widget ${isOpen ? 'open' : ''}`}>
+    <div className={`chat-widget ${isOpen ? "open" : ""}`}>
       {!isOpen && (
         <button className="chat-trigger glass" onClick={() => setIsOpen(true)}>
-          💬 Concierge
+          💬 Chatbot
         </button>
       )}
 
       {isOpen && (
         <div className="chat-window glass">
           <div className="chat-header">
-            <h3>Virtual Concierge</h3>
-            <button className="close-btn" onClick={() => setIsOpen(false)}>×</button>
+            <h3>Chatbot</h3>
+            <button className="close-btn" onClick={() => setIsOpen(false)}>
+              ×
+            </button>
           </div>
-          
+
           <div className="chat-body">
             {messages.map((msg, idx) => (
               <div key={idx} className={`chat-message ${msg.sender}`}>
-                <div className="msg-bubble" style={msg.isError ? {backgroundColor: 'var(--error-color)', color: 'white'} : {}}>
-                  {/* Para un MVP renderizamos texto crudo, para producción podríamos usar react-markdown */}
-                  {msg.text.split('\n').map((line, i) => (
-                    <span key={i}>{line}<br/></span>
-                  ))}
+                <div
+                  className="msg-bubble"
+                  style={
+                    msg.isError
+                      ? {
+                          backgroundColor: "#ef4444",
+                          color: "white",
+                        }
+                      : {}
+                  }
+                >
+                  {/* El bot responde en markdown (negritas, viñetas); el mensaje
+                      del usuario se muestra como texto plano respetando saltos. */}
+                  {msg.sender === "bot" ? (
+                    <div className="msg-markdown">
+                      <ReactMarkdown>{msg.text}</ReactMarkdown>
+                    </div>
+                  ) : (
+                    msg.text.split("\n").map((line, i) => (
+                      <span key={i}>
+                        {line}
+                        <br />
+                      </span>
+                    ))
+                  )}
                 </div>
               </div>
             ))}
@@ -93,14 +135,16 @@ const ChatWidget = () => {
           </div>
 
           <form className="chat-footer" onSubmit={handleSend}>
-            <input 
-              type="text" 
+            <input
+              type="text"
               placeholder="Pregunta sobre reservas, spa, mascotas..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               disabled={isLoading}
             />
-            <button type="submit" className="btn-primary" disabled={isLoading}>Enviar</button>
+            <button type="submit" className="btn-primary" disabled={isLoading}>
+              Enviar
+            </button>
           </form>
         </div>
       )}

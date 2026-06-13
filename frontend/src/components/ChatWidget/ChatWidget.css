@@ -100,6 +100,38 @@
   border-bottom-left-radius: 2px;
 }
 
+/* Markdown del bot: compacto y legible dentro de la burbuja */
+.msg-markdown > :first-child {
+  margin-top: 0;
+}
+.msg-markdown > :last-child {
+  margin-bottom: 0;
+}
+.msg-markdown p {
+  margin: 0 0 0.5rem;
+}
+.msg-markdown ul,
+.msg-markdown ol {
+  margin: 0.25rem 0 0.5rem;
+  padding-left: 1.2rem;
+}
+.msg-markdown li {
+  margin-bottom: 0.2rem;
+}
+.msg-markdown strong {
+  font-weight: 600;
+}
+.msg-markdown a {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+.msg-markdown code {
+  background: var(--bg-secondary);
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
 .typing {
   font-style: italic;
   color: var(--text-secondary);
