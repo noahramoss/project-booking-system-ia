@@ -1,0 +1,178 @@
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: row;
+}
+
+/* ===================== SIDEBAR ===================== */
+.dashboard-sidebar {
+  width: 250px;
+  padding: 2rem;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.sidebar-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.sidebar-toggle {
+  display: none; /* Oculto en desktop */
+  font-size: 1.5rem;
+  color: var(--text-main);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  margin-top: 1.5rem;
+}
+
+.sidebar-nav a {
+  padding: 0.6rem 0.75rem;
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-nav a:hover {
+  color: var(--primary-color);
+  background-color: rgba(59, 130, 246, 0.08);
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ===================== MAIN ===================== */
+.dashboard-main {
+  flex: 1;
+  padding: 2rem;
+  background: var(--bg-primary);
+  min-width: 0; /* Permite que el contenido se encoja para que overflow-x funcione */
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.dashboard-badge {
+  padding: 0.5rem 1rem;
+  color: #fff;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* ===================== TABLAS ===================== */
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 600px; /* Fuerza scroll horizontal en lugar de romper el layout */
+}
+
+.table-container th,
+.table-container td {
+  padding: 1rem;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.table-container thead tr {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.table-container tbody tr {
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Celda de acciones: botones en línea pero SIN display:flex para no romper alineación */
+.action-cell {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ===================== RESPONSIVE: MOBILE ===================== */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .dashboard-sidebar {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  /* Cabecera del sidebar: título + hamburguesa en línea */
+  .sidebar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sidebar-toggle {
+    display: block; /* Visible en móvil */
+  }
+
+  /* Nav y bottom se ocultan por defecto en móvil */
+  .sidebar-nav,
+  .sidebar-bottom {
+    display: none;
+  }
+
+  /* Cuando el menú está abierto */
+  .sidebar-nav.sidebar-nav--open,
+  .sidebar-bottom.sidebar-bottom--open {
+    display: flex;
+  }
+
+  .sidebar-nav.sidebar-nav--open {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .dashboard-main {
+    padding: 1.5rem 1rem;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.25rem;
+  }
+}

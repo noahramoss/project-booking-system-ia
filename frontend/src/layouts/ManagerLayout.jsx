@@ -1,42 +1,53 @@
+import { useState } from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
+
+import './DashboardLayout.css';
 
 const ManagerLayout = () => {
   const { user, logout } = useAuth();
   const { isDarkMode, toggleTheme } = useTheme();
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
     navigate('/login');
   };
 
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
-      <aside className="glass" style={{ width: '250px', padding: '2rem', borderRight: '1px solid var(--border-color)', display: 'flex', flexDirection: 'column' }}>
-        <h2 style={{ marginBottom: '2rem', color: 'var(--accent-color)' }}>Manager Panel</h2>
+    <div className="dashboard-container">
+      <aside className="dashboard-sidebar glass">
+        <div className="sidebar-top">
+          <h2 className="sidebar-title" style={{ color: 'var(--primary-color)' }}>Manager Panel</h2>
+          <button className="sidebar-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? '✖' : '☰'}
+          </button>
+        </div>
         
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: '1rem', flex: 1 }}>
-          <Link to="/manager/dashboard">Dashboard</Link>
-          <Link to="/manager/hotels">Mis Hoteles</Link>
-          <Link to="/manager/bookings">Gestión de Reservas</Link>
+        <nav className={`sidebar-nav ${isMenuOpen ? 'sidebar-nav--open' : ''}`}>
+          <Link to="/manager/dashboard" onClick={closeMenu}>Dashboard</Link>
+          <Link to="/manager/hotels" onClick={closeMenu}>Mis Hoteles</Link>
+          <Link to="/manager/bookings" onClick={closeMenu}>Gestión de Reservas</Link>
         </nav>
         
-        <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <button onClick={toggleTheme} className="btn" style={{ background: 'transparent', color: 'var(--text-primary)', border: '1px solid var(--border-color)' }}>
+        <div className={`sidebar-bottom ${isMenuOpen ? 'sidebar-bottom--open' : ''}`}>
+          <button onClick={toggleTheme} className="btn" style={{ background: 'transparent', color: 'var(--text-main)', border: '1px solid var(--border-color)', padding: '0.5rem 1rem', borderRadius: 'var(--radius-md)' }}>
             {isDarkMode ? '☀️ Claro' : '🌙 Oscuro'}
           </button>
-          <button onClick={handleLogout} className="btn" style={{ background: 'transparent', color: 'var(--error-color)' }}>
+          <button onClick={handleLogout} className="btn" style={{ background: 'transparent', color: '#ef4444', padding: '0.5rem 1rem' }}>
             Cerrar Sesión
           </button>
         </div>
       </aside>
 
-      <main style={{ flex: 1, padding: '2rem', background: 'var(--bg-primary)' }}>
-        <header style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'space-between' }}>
+      <main className="dashboard-main">
+        <header className="dashboard-header">
           <h1>Bienvenido, {user?.name}</h1>
-          <span style={{ padding: '0.5rem 1rem', background: 'var(--accent-color)', color: '#fff', borderRadius: '20px' }}>Manager</span>
+          <span className="dashboard-badge" style={{ background: 'var(--primary-color)' }}>Manager</span>
         </header>
         <Outlet />
       </main>

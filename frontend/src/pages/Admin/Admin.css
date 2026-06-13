@@ -1,0 +1,23 @@
+.role-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.role-user {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--primary-color);
+}
+
+.role-manager {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.role-admin {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
