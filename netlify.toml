@@ -1,0 +1,15 @@
+# Configuración de despliegue del frontend (Vite) en Netlify.
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = "dist"
+
+# URL base de la API del backend (Render). No es secreta.
+[build.environment]
+  VITE_API_URL = "https://project-booking-system-ia.onrender.com/api"
+
+# SPA: cualquier ruta sirve index.html para que funcione React Router.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
